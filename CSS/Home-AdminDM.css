@@ -78,7 +78,7 @@ main
 }
 main .content-wrapper .content .card-wrapper button.tambah,
 main .content-wrapper .content .card-wrapper button.tambah i {
-  color: #fff;
+  color: var(--grey);
 }
 main
   .content-wrapper
@@ -90,7 +90,7 @@ main
   input {
   border: 1px solid #7b7b7b;
 }
-main .content-wrapper .content .card-wrapper .isi-data table thead tr th {
+main .content-wrapper .content .card-wrapper table thead tr th {
   background-color: var(--light);
   color: #e2e2e2;
 }
@@ -116,41 +116,12 @@ main
   background-color: var(--light);
   border: 1px solid var(--white);
 }
-main
-  .content-wrapper
-  .content
-  .card-wrapper
-  .isi-data
-  table
-  tbody
-  tr:nth-child(even) {
+main .content-wrapper .content .card-wrapper table tbody tr:nth-child(even) {
   background-color: rgba(197, 197, 197, 0.678);
 }
-main
-  .content-wrapper
-  .content
-  .card-wrapper
-  .isi-data
-  .description
-  .pagination {
+main .content-wrapper .content .card-wrapper .description .pagination {
   background-color: var(--light);
 }
-main
-  .content-wrapper
-  .content
-  .card-wrapper
-  .isi-data
-  .description
-  .pagination
-  p,
-main
-  .content-wrapper
-  .content
-  .card-wrapper
-  .isi-data
-  .description
-  .pagination
-  p
-  i {
+main .content-wrapper .content .card-wrapper .description .pagination button {
   color: var(--white);
 }

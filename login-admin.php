@@ -1,7 +1,14 @@
 <?php
 session_start(); //memulai session
-require "function.php";
 // cek COOKIE
+
+$db = mysqli_connect(
+    "localhost",
+    "root",
+    "",
+    "perpus"
+);
+
 if (isset($_COOKIE["UIuDSteKukki"]) && isset($_COOKIE["UNmeKySteKukki"])) {
     // cek dulu ada atau tidak
     $id = $_COOKIE["UIuDSteKukki"];
@@ -42,7 +49,6 @@ if (isset($_POST["submit"])) {
                 $time = time() + 60 * 60 * 24;
                 setcookie("UIuDSteKukki", $row["id"], $time);
                 setcookie("UNmeKySteKukki", hash("sha512", $row["username"]), $time);
-                setcookie("username", $username, $time);
             }
 
             // cek session
@@ -85,12 +91,12 @@ if (isset($_POST["submit"])) {
 
             <!-- pesan kesalahan error -->
             <?php if (isset($err)): ?>
-            <p style="color: red;margin:0;">Username atau Password salah!</p>
+                <p style="color: red;margin:0;">Username atau Password salah!</p>
             <?php endif ?>
 
             <li style="margin: 5px 0;">
                 <button type="submit" name="submit">Login!</button>
-                <a href="registrasi.php">registrasi</a>
+                <a href="register.php">registrasi</a>
             </li>
         </ul>
     </form>

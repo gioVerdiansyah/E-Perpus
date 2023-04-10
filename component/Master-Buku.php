@@ -1,11 +1,27 @@
 <?php
 require '../database/functions.php';
-$books = mysqli_query($db, 'SELECT * FROM buku ORDER BY id ASC');
+
+$dataPerHalaman = (isset($_GET['lim'])) ? $_GET['lim'] : 10;
+$jumlahData = count(query("SELECT * FROM buku"));
+$jumlahHalaman = ceil($jumlahData / $dataPerHalaman);
+$halamanAktif = (isset($_GET['page'])) ? $_GET['page'] : 1;
+$books = mysqli_query($db, "SELECT * FROM buku ORDER BY id ASC LIMIT $dataPerHalaman");
 ?>
 
+<style>
+    .side-bar {
+        height: 100% !important;
+        box-shadow: none !important;
+    }
 
+    main {
+        height: max-content !important;
+    }
+</style>
 
 <link rel="stylesheet" href="CSS/style-content.css">
+<script src="JS/jquery-3.6.3.min.js"></script>
+<script src="JS/script.js"></script>
 <div class="title">
     <h1>Buku</h1>
     <hr>
@@ -13,112 +29,100 @@ $books = mysqli_query($db, 'SELECT * FROM buku ORDER BY id ASC');
     <h3>Index</h3>
 </div>
 <!-- ini.isi -->
-<div class="card-wrapper">
-    <a href="database/insert.php" target="_blank" rel="noopener noreferrer">
+<div class="card-wrapper penulis">
+    <a href="database/insert.php" rel="noopener noreferrer">
         <button class="tambah"><i class="fa-solid fa-plus"></i>Tambah</button>
     </a>
     <div class="data-wrapper">
         <div class="data-indicator">
             <div class="data-entries">
                 <p>show</p>
-                <select id="selection">
+                <select id="selection" name="selection"
+                    onchange="
+                    let value = $(this).val();
+                    $('#isi-data').load('component/result/index.php?lim=' + value + '&&page=<?= $halamanAktif ?>&&key=' + $('#search').val())">
                     <option value="10">10</option>
                     <option value="5">5</option>
-                    <option value="1">1</option>
+                    <option value="2">2</option>
                 </select>
                 <p>entries</p>
             </div>
             <div class="data-search">
                 <label for="search">Search:</label>
-                <input type="search" name="" id="">
+                <input type="search" name="search" id="search" onkeyup="
+                $('#isi-data').load(
+                    'component/result/index.php?lim=' + $('#selection').val() + '&&page=<?= $halamanAktif ?>&&key=' + $(this).val()
+                )">
             </div>
         </div>
         <!-- isi data -->
         <div class="isi-data" id="isi-data">
-            <table width="100%">
-                <thead width="100%">
-                    <th>NO</th>
-                    <th>THUMBNAIL</th>
-                    <th>JUDUL BUKU</th>
-                    <th>KATEGORI</th>
-                    <th>PENULIS</th>
-                    <th>PENERBIT</th>
-                    <th>ACTION</th>
-                </thead>
-                <tbody width="100%" cellspacing="10">
-                    <?php
-                    $id = 1;
-                    foreach ($books as $book):
+            <div class="data">
+                <table width="100%">
+                    <thead width="100%">
+                        <th>NO</th>
+                        <th>THUMBNAIL</th>
+                        <th>JUDUL BUKU</th>
+                        <th>KATEGORI</th>
+                        <th>PENULIS</th>
+                        <th>PENERBIT</th>
+                        <th>ACTION</th>
+                    </thead>
+                    <tbody width="100%" cellspacing="10">
+                        <?php
+                        $id = 1;
+                        foreach ($books as $book):
+                            ?>
+                            <tr cellspacing="10">
+                                <td>
+                                    <?= $id ?>
+                                </td>
+                                <td>
+                                    <img src="Temp/<?= $book['image'] ?>" alt="Thumbnail" height="70">
+                                </td>
+                                <td style="width:16%; text-align:left;">
+                                    <?= $book['judul_buku'] ?>
+                                </td>
+                                <td>
+                                    <?= $book['kategori'] ?>
+                                </td>
+                                <td>
+                                    <?= $book['penulis'] ?>
+                                </td>
+                                <td>
+                                    <?= $book['penerbit'] ?>
+                                </td>
+                                <td>
+                                    <a href="database/update.php?id=<?= $book['id'] ?>"><i
+                                            class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="database/delete.php?id=<?= $book['id'] ?>"><i
+                                            class="fa-solid fa-delete-left"></i></a>
+                                </td>
+                            </tr>
+                            <?php
+                            $id++;
+                        endforeach;
                         ?>
-                    <tr cellspacing="10">
-                        <td>
-                            <?= $id ?>
-                        </td>
-                        <td>
-                            <img src="Temp/<?= $book['image'] ?>" alt="Thumbnail" height="70">
-                        </td>
-                        <td style="width:16%; text-align:left;">
-                            <?= $book['judul_buku'] ?>
-                        </td>
-                        <td>
-                            <?= $book['kategori'] ?>
-                        </td>
-                        <td>
-                            <?= $book['penulis'] ?>
-                        </td>
-                        <td>
-                            <?= $book['penerbit'] ?>
-                        </td>
-                        <td>
-                            <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a href=""><i class="fa-solid fa-delete-left"></i></a>
-                        </td>
-                    </tr>
-                    <?php
-                        $id++;
-                    endforeach;
-                    ?>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
             <div class="description">
                 <p>Showing
-                    <?= $id -= 1; ?> of 2 entries
+                    <?= $id -= 1; ?> of 10 entries
                 </p>
                 <div class="pagination">
-                    <p>
-                        <i class="fa-solid fa-angle-left"></i>
-                        Previous
-                    </p>
                     <p class="amount-of-data">1</p>
-                    <p>
-                        Next
-                        <i class="fa-solid fa-angle-right"></i>
-                    </p>
+                    <?php if ($halamanAktif < $jumlahHalaman): ?>
+                        <button onclick="
+                    $('.isi-data').load(
+                        'component/result/index.php?lim=<?= $dataPerHalaman ?>&&page=<?= $halamanAktif + 1 ?>&&key=' + $('#search').val())'
+                    )">
+                            Next
+                            <i class="fa-solid fa-angle-right"></i>
+                        </button>
+                    <?php endif ?>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script src="../JS/jquery-3.6.3.min.js">
-$(document).ready(function() {
-    $("#selection").on("change", function() {
-        let value = $(this).val();
-
-        // $.get("component/pagenation/index.php?lim=" + value, (data) => {
-        //     $("#isi-data").html(data);
-        // })
-        // $.ajax({
-        //     type: "GET",
-        //     url: "pagenation/index.php",
-        //     data: {
-        //         selectedValue: selectedValue
-        //     },
-        //     success: function(response) {
-        //         console.log(response);
-        //     }
-        // });
-
-        $("body").addClass("test");
-    })
-})
-</script>

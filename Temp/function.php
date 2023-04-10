@@ -53,10 +53,54 @@ function register($data)
     $pass = password_hash($pass, PASSWORD_DEFAULT);
 
 
+    $gambar = upload();
+
+    if (!$gambar) {
+        return false;
+    }
+
     // menambah kan ke dalam database
     mysqli_query($db, "INSERT INTO loginadmin VALUE(
-        '', '$username', '$pass'
+        '', '$username', '$pass', '$gambar'
         )");
 
     return mysqli_affected_rows($db);
+}
+
+function upload()
+{
+    $fileName = $_FILES["gambar"]["name"];
+    $fileSize = $_FILES["gambar"]["size"];
+    $fileError = $_FILES["gambar"]["error"];
+    $fileTemp = $_FILES["gambar"]["tmp_name"];
+
+    if ($fileError === 1) {
+        echo "<script>alert('Masukkan gambar!');</script>";
+        return false;
+    }
+
+    $extensionValid = ["jpg", "jpeg", "png"];
+    $extensionFile = explode('.', $fileName);
+    $extensionFile = strtolower(end($extensionFile));
+
+    if (!in_array($extensionFile, $extensionValid)) {
+        echo "
+        <script>
+            alert('masukkan ekstensi gambar: \"jpg\",\"jpeg\",\"png\"!');
+        </script>";
+        return false;
+    }
+
+    if ($fileSize > 10000000) {
+        echo "
+        <script>
+            alert('gambar tidak boleh lebih 10MB');
+        </script>";
+        return false;
+    }
+
+    $fileGenerateName = uniqid() . "." . $extensionFile;
+
+    move_uploaded_file($fileTemp, "Temp/" . $fileGenerateName);
+    return $fileGenerateName;
 }

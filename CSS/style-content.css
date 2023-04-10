@@ -213,9 +213,35 @@ main .content-wrapper .content .download {
   border-radius: 50%;
   margin: 0 5px;
 }
-.content-wrapper .content .card-wrapper .isi-data .description .pagination p,
-.content-wrapper .content .card-wrapper .isi-data .description .pagination p i {
-  display: flex;
-  align-items: center;
+.content-wrapper
+  .content
+  .card-wrapper
+  .isi-data
+  .description
+  .pagination
+  button {
+  background: none;
+  border: none;
+  cursor: pointer;
   color: #515151;
+}
+.content-wrapper
+  .content
+  .card-wrapper
+  .isi-data
+  .description
+  .pagination
+  button
+  i.fa-angle-left {
+  transform: translate(3px, 1px);
+}
+.content-wrapper
+  .content
+  .card-wrapper
+  .isi-data
+  .description
+  .pagination
+  button
+  i.fa-angle-right {
+  transform: translate(-3px, 1px);
 }

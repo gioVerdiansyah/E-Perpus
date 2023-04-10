@@ -4,6 +4,7 @@ if (isset($_POST['submit'])) {
     if (insert($_POST) > 0) {
         echo "<script>
         alert('Data berhasil di tambahkan!');
+        document.location.href = '../Home-Admin.php';
         </script>";
     } else {
         echo "Data gagal di tambahkan" . "<br>" . mysqli_error($db);

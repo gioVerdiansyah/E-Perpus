@@ -4,8 +4,20 @@ if (!isset($_SESSION["login"])) {
     header("Location: login-admin.php");
     exit;
 }
-require 'function.php';
 
+
+$id = $_COOKIE["UIuDSteKukki"];
+$key = $_COOKIE["UNmeKySteKukki"];
+
+// cek username berdasarkan id
+$result = mysqli_query(mysqli_connect("localhost", "root", "", "perpus"), "SELECT * FROM loginadmin WHERE id='$id'");
+$row = mysqli_fetch_assoc($result); //ambil
+$username = '';
+
+// cek COOKIE dan username
+if ($key === hash("sha512", $row["username"])) {
+    $username = $row["username"];
+}
 ?>
 
 <!DOCTYPE html>
@@ -62,13 +74,12 @@ require 'function.php';
                 <div class="profile">
                     <div class="text">
                         <h2 class="name">
-                            <?= ucfirst($_COOKIE["username"]) ?>
+                            <?= ucfirst($username) ?>
                         </h2>
                         <h3 class="type">Admin</h3>
                     </div>
                     <!-- photo profile user -->
-                    <!-- <img src="" alt="" srcset=""> -->
-                    <div class="profile-user"></div>
+                    <img src="Temp/<?= $row['gambar'] ?>" alt="photo profile">
                     <div class="dropdown-profile">
                         <ul>
                             <li><a href="logout-admin.php" onclick="return confirm('Sure?');"><i

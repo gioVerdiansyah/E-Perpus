@@ -51,14 +51,5 @@ $(document).ready(function () {
         e.preventDefault();
         onReady(this, 'component/Data-Laporan.php');
     });
+
 });
-
-
-// book
-    $("#selection").on("change", function() {
-        let value = $(this).val();
-
-        $.get("component/pagenation/index.php?lim=" + value, function(data) {
-            $("#isi-data").html(data);
-        })
-    })

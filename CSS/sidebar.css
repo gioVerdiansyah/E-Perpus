@@ -210,18 +210,17 @@ main {
   align-items: center;
   cursor: pointer;
 }
+.content-wrapper .heading .profile img {
+  width: 33px;
+  height: 33px;
+  margin-left: 5px;
+}
 .content-wrapper .heading .profile .text h2 {
   font-size: large;
 }
 .content-wrapper .heading .profile .text h3 {
   font-size: small;
   text-align: end;
-}
-.content-wrapper .heading .profile .profile-user {
-  background-color: black;
-  width: 25px;
-  height: 30px;
-  margin-left: 5px;
 }
 .content-wrapper .heading .profile .dropdown-profile {
   display: none;
@@ -262,6 +261,7 @@ main {
 /* footer */
 main footer {
   font-size: xx-small;
+  margin-top: 10px;
 }
 main footer h2 a {
   color: blueviolet;

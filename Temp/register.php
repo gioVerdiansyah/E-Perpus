@@ -32,7 +32,7 @@ if (isset($_POST["submit"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrasi</title>
 </head>
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     <ul>
         <li> <label for="username">Username :</label><br>
             <input type="text" name="username" id="username" required>
@@ -44,6 +44,10 @@ if (isset($_POST["submit"])) {
         <li>
             <label for="confirmPass">Confirmation Password :</label><br>
             <input type="password" name="confirmPass" id="confirmPas" required>
+        </li>
+        <li>
+            <label for="gambar">Photo Profile</label><br>
+            <input type="file" name="gambar" id="gambar" required>
         </li>
         <?php echo $massage; ?>
 
