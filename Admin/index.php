@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION["login"])) {
+if (!isset($_SESSION["login"]) || !isset($_COOKIE["UIuDSteKukki"]) || !isset($_COOKIE["UNmeKySteKukki"])) {
     header("Location: login-admin.php");
     exit;
 }
@@ -52,6 +52,9 @@ if ($key === hash("sha512", $row["username"])) {
                     </div>
                 </div>
                 <ul class="list-master-data" id="list-master-data">
+                    <li id="penulis">
+                        <h3>Penulis</h3>
+                    </li>
                     <li id="buku">
                         <h3>Buku</h3>
                     </li>

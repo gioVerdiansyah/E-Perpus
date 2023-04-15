@@ -10,7 +10,6 @@
 </div>
 <!-- ini.isi -->
 <div class="card-wrapper penulis">
-    <button class="tambah"><i class="fa-solid fa-plus"></i>Tambah</button>
     <div class="data-wrapper">
         <div class="data-indicator">
             <div class="data-entries">
@@ -18,37 +17,41 @@
                 <select>
                     <option value="10">10</option>
                     <option value="5">5</option>
-                    <option value="1">1</option>
+                    <option value="2">2</option>
                 </select>
                 <p>entries</p>
             </div>
             <div class="data-search">
                 <label for="search">Search:</label>
-                <input type="search" name="" id="">
+                <input type="search" name="search" id="search">
             </div>
         </div>
         <!-- isi data -->
         <div class="isi-data">
-            <table width="100%">
-                <thead width="100%">
-                    <th>NO</th>
-                    <th>PEMINJM</th>
-                    <th>JUDUL BUKU</th>
-                    <th>TGL PINJAM</th>
-                    <th>TGL PENGEMBALIAN</th>
-                    <th>STATUS</th>
-                </thead>
-                <tbody width="100%" cellspacing="10">
-                    <tr cellspacing="10">
-                        <td>1</td>
-                        <td>verdi</td>
-                        <td>Hello World</td>
-                        <td>2021-05-24</td>
-                        <td>2021-05-25</td>
-                        <td>dikembalikan</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="data">
+                <table width="100%">
+                    <thead width="100%">
+                        <th>NO</th>
+                        <th>PEMINJAM</th>
+                        <th>JUDUL BUKU</th>
+                        <th>KATEGORI</th>
+                        <th>TGL PINJAM</th>
+                        <th>STATUS</th>
+                    </thead>
+                    <tbody width="100%" cellspacing="10">
+                        <tr cellspacing="10">
+                            <td>1</td>
+                            <td>verdi</td>
+                            <td>Hello World</td>
+                            <td>Pemrograman</td>
+                            <td>2021-05-25</td>
+                            <td>
+                                <a href=""><i class="fa-solid fa-delete-left"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <div class="description">
                 <p>Showing 1 to 2 of 2 entries</p>
                 <div class="pagination">

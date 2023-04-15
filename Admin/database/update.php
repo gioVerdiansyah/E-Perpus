@@ -9,7 +9,7 @@ if (isset($_POST["submit"])) {
     if (updt($_POST) > 0) {
         echo "<script>
         alert('Data berhasil di Ubah!');
-        document.location.href = '../Home-Admin.php';
+        document.location.href = '../index.php';
         </script>";
     } else {
         echo "Data gagal di Ubah" . "<br>" . mysqli_error($db);

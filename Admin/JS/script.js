@@ -37,6 +37,11 @@ $(document).ready(function () {
         onReady(this, 'component/Home-Admin.php');
     });
 
+    $("#penulis h3").click(function (e) { 
+        e.preventDefault();
+        onReady(this, 'component/Master-Penulis.php');
+    });
+
     $("#buku h3").click(function (e) { 
         e.preventDefault();
         onReady(this, 'component/Master-Buku.php');

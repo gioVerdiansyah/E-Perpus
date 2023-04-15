@@ -25,7 +25,7 @@ if (isset($_COOKIE["UIuDSteKukki"]) && isset($_COOKIE["UNmeKySteKukki"])) {
 }
 // jika SESSION["login"] nya ada maka pindah ke index
 if (isset($_SESSION["login"])) {
-    header("Location: Home-Admin.php");
+    header("Location: index.php");
     exit;
 }
 
@@ -53,7 +53,7 @@ if (isset($_POST["submit"])) {
 
             // cek session
             $_SESSION["login"] = true;
-            header("Location: Home-Admin.php");
+            header("Location: index.php");
             exit;
         }
 
