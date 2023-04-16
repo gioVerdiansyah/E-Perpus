@@ -96,7 +96,8 @@ if ($key === hash("sha512", $row["username"])) {
             </div>
         </div>
         <footer>
-            <h2>COPYRIGHT &#x24B8; <a href=""> 2023 SMKN 1 MEJAYAN Kab. MADIUN</a>,All rights Reserved</h2>
+            <h2>COPYRIGHT &#x24B8; <a href="https://smkn1mejayan.sch.id/" target="_blank"> 2023 SMKN 1 MEJAYAN Kab.
+                    MADIUN</a>,All rights Reserved</h2>
         </footer>
     </main>
 </body>

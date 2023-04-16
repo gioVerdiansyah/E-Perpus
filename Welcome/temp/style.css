@@ -1,0 +1,204 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+body {
+  background-color: rgb(248, 248, 255);
+  position: relative;
+  height: 100vh;
+}
+
+nav {
+  padding: 5px 15px;
+  background-color: white;
+  box-shadow: 1px 0px 3px rgba(0, 0, 0, 0.5);
+}
+nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+nav ul li:first-child h1 {
+  cursor: pointer;
+  font-size: xx-large;
+  transform: rotate(-25deg);
+}
+nav ul li:nth-child(2) h1 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+nav ul li:last-child {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+}
+nav ul li:last-child div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+nav ul li:last-child div h2 {
+  font-size: medium;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+nav ul li:last-child div p {
+  font-size: small;
+  text-align: right;
+  font-family: Arial, Helvetica, sans-serif;
+}
+nav ul li:last-child img {
+  width: 45px;
+  margin-left: 10px;
+  border-radius: 50%;
+}
+
+header {
+  width: 90%;
+  background-color: white;
+  box-shadow: 3px 1px 5px rgba(0, 0, 0, 0.2), -2px -1px 3px rgba(0, 0, 0, 0.2);
+  margin: 20px auto;
+  padding: 5px;
+  border-radius: 3px;
+}
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+header ul li {
+  cursor: pointer;
+  padding: 10px;
+  margin-right: 20px;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all 0.3s;
+}
+header ul li i {
+  margin-right: 5px;
+}
+header ul li:hover {
+  color: white;
+  background-color: blueviolet;
+  box-shadow: 1px 1px 3px rgb(209, 160, 255), -1px -1px 3px rgb(209, 160, 255);
+}
+
+header ul li.on {
+  color: white;
+  background-color: blueviolet;
+  box-shadow: 1px 1px 3px rgb(209, 160, 255), -1px -1px 3px rgb(209, 160, 255);
+}
+
+/*! Main */
+main {
+  width: 90%;
+  margin: 0 auto;
+  background-color: white;
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: 3px 1px 5px rgba(0, 0, 0, 0.2), -2px -1px 3px rgba(0, 0, 0, 0.2);
+}
+main .title {
+  margin: 10px 0 30px 0;
+}
+main .title,
+main .data-wrapper .data-indicator {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+main .data-wrapper .data-indicator .data-entries {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+main .data-wrapper .data-indicator .data-entries select#selection {
+  margin: 0 5px;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.data-wrapper .isi-data .data table {
+  text-align: center;
+  border-collapse: collapse;
+}
+.data-wrapper .isi-data .data table thead th {
+  background-color: rgb(197, 197, 197);
+  color: rgb(43, 43, 43);
+  border-bottom: 2px solid;
+  padding: 10px 5px;
+}
+.data-wrapper .isi-data .data table tbody tr td {
+  padding: 20px 0;
+}
+.data-wrapper .isi-data .data table tbody tr td#detail p {
+  width: max-content;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 3px;
+  background-color: rgb(115, 103, 240);
+  margin: 0 auto;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.data-wrapper .isi-data .data table tbody tr td#detail p:hover {
+  background-color: rgb(66, 55, 187);
+}
+.data-wrapper .isi-data .data table tbody tr td#detail i {
+  margin-right: 5px;
+  transform: rotate(90deg);
+}
+.data-wrapper .description .pagination {
+  width: max-content;
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: rgba(197, 197, 197, 0.678);
+  color: #ffffff;
+  border-radius: 15px;
+  padding: 0 5px;
+}
+.data-wrapper .isi-data .description .pagination p.amount-of-data {
+  background-color: rgb(115, 103, 240);
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+.data-wrapper .isi-data .description .pagination button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #515151;
+  transition: all 0.3s;
+}
+.data-wrapper .isi-data .description .pagination button:hover {
+  color: white;
+}
+.data-wrapper .isi-data .description .pagination button i.fa-angle-left {
+  transform: translate(3px, 1px);
+}
+.data-wrapper .isi-data .description .pagination button i.fa-angle-right {
+  transform: translate(-3px, 1px);
+}
+
+footer {
+  position: absolute;
+  left: 5%;
+  bottom: 0;
+  font-size: xx-small;
+}
+footer h2 a {
+  color: blueviolet;
+  transition: all 0.3s;
+}
+footer h2 a:hover {
+  text-decoration: underline;
+}

@@ -97,6 +97,10 @@ main form ul li:last-child button {
   padding: 5px 3px;
   transition: all 0.3s;
 }
+main form ul li p.error {
+  color: red;
+  font-family: Arial, Helvetica, sans-serif;
+}
 main form ul li:last-child button:hover {
   background-color: rgb(64, 53, 180);
 }

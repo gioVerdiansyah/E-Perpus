@@ -4,16 +4,18 @@ session_start();
 require 'function.php';
 
 // jika user sudah login
-if (isset($_SESSION["login-user"]) || isset($_COOKIE["UUsSRlGn=thORoe"]) || isset($_COOKIE["UDsSRlGn=thORue"])) {
-    header("Location: welcome.php");
+if (isset($_SESSION["login-user"]) || isset($_COOKIE["UUsSRlGnEQthORoe"]) || isset($_COOKIE["UDsSRlGnEQthORue"])) {
+    header("Location: Welcome/");
     exit;
 }
 
 $massage = "";
+$redirect;
 
 if (isset($_POST["submit"])) {
-    global $massage, $db;
-    if (register($_POST) === 1) {$_SESSION["login-user"] = true;
+    global $massage, $redirect;
+    if (register($_POST) === 1) {
+        $redirect = true;
     } else {
         global $massage;
         $error = $_SESSION["error"];
@@ -30,45 +32,45 @@ if (isset($_POST["submit"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login dulu~</title>
-    <link rel="stylesheet" href="User/CSS/register.css" />
-    <script src="User/JS/script.js"></script>
+    <link rel="stylesheet" href="Welcome/CSS/register.css" />
+    <script src="Welcome/JS/script.js"></script>
 </head>
 
 <body>
-    <?php if(isset($_SESSION["login-user"])): ?>
-    <div id="redirect">
-        <h1>Register Berhasil!!!</h1>
-        <div>
-            <p>Redirect otomatis dalam <span id="countdown"></span></p>
-            <button id="cencel">Cencel</button>
+    <?php if (isset($redirect)): ?>
+        <div id="redirect">
+            <h1>Register Berhasil!!!</h1>
+            <div>
+                <p>Redirect otomatis dalam <span id="countdown"></span></p>
+                <button id="cencel">Cencel</button>
+            </div>
+            <script>
+                document.getElementById("cencel").addEventListener('click', () => {
+                    clearInterval(x);
+                    document.getElementById("redirect").remove();
+                })
+                var countDownDate = new Date().getTime() + 7000;
+                var x = setInterval(function () {
+                    let countdown = document.getElementById("countdown");
+                    var now = new Date().getTime();
+
+                    var seconds = Math.floor((countDownDate - now) / 1000);
+
+                    countdown.innerHTML = seconds + "s";
+
+                    if (seconds <= 0) {
+                        clearInterval(x);
+                        window.location.href = "index.php";
+                    }
+                    if (seconds <= 2) {
+                        countdown.style = "color: red";
+                    }
+                }, 1000);
+            </script>
         </div>
-        <script>
-        document.getElementById("cencel").addEventListener('click', () => {
-            clearInterval(x);
-            document.getElementById("redirect").remove();
-        })
-        var countDownDate = new Date().getTime() + 7000;
-        var x = setInterval(function() {
-            let countdown = document.getElementById("countdown");
-            var now = new Date().getTime();
-
-            var seconds = Math.floor((countDownDate - now) / 1000);
-
-            countdown.innerHTML = seconds + "s";
-
-            if (seconds <= 0) {
-                clearInterval(x);
-                window.location.href = "welcome.php";
-            }
-            if (seconds <= 2) {
-                countdown.style = "color: red";
-            }
-        }, 1000);
-        </script>
-    </div>
     <?php endif ?>
     <div class="image">
-        <!-- <img src="User/Assets/bg6-2.svg" alt="bg6-2.svg" /> -->
+        <!-- <img src="Welcome/Assets/bg6-2.svg" alt="bg6-2.svg" /> -->
     </div>
     <main>
         <h1>Selamat Datang user baru!<span id="hello">&#128075</span></h1>

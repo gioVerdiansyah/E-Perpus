@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+body {
+  background-color: rgb(248, 248, 255);
+  position: relative;
+  height: 100vh;
+}
+
+nav {
+  padding: 5px 15px;
+  background-color: white;
+  box-shadow: 1px 0px 3px rgba(0, 0, 0, 0.5);
+}
+nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+nav ul li:first-child h1 {
+  cursor: pointer;
+  font-size: xx-large;
+  transform: rotate(-25deg);
+}
+nav ul li:nth-child(2) h1 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+nav ul li:last-child {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+}
+nav ul li:last-child div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+nav ul li:last-child div h2 {
+  font-size: medium;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+nav ul li:last-child div p {
+  font-size: small;
+  text-align: right;
+  font-family: Arial, Helvetica, sans-serif;
+}
+nav ul li:last-child img {
+  width: 45px;
+  margin-left: 10px;
+  border-radius: 50%;
+}
+
+header {
+  width: 90%;
+  background-color: white;
+  box-shadow: 3px 1px 5px rgba(0, 0, 0, 0.2), -2px -1px 3px rgba(0, 0, 0, 0.2);
+  margin: 20px auto;
+  padding: 5px;
+  border-radius: 3px;
+}
+header ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+header ul li {
+  cursor: pointer;
+  padding: 10px;
+  margin-right: 20px;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all 0.3s;
+}
+header ul li i {
+  margin-right: 5px;
+}
+header ul li:hover {
+  color: white;
+  background-color: blueviolet;
+  box-shadow: 1px 1px 3px rgb(209, 160, 255), -1px -1px 3px rgb(209, 160, 255);
+}
+
+header ul li.on {
+  color: white;
+  background-color: blueviolet;
+  box-shadow: 1px 1px 3px rgb(209, 160, 255), -1px -1px 3px rgb(209, 160, 255);
+}
+
+footer {
+  position: absolute;
+  left: 5%;
+  bottom: 0;
+  font-size: xx-small;
+}
+footer h2 a {
+  color: blueviolet;
+  transition: all 0.3s;
+}
+footer h2 a:hover {
+  text-decoration: underline;
+}

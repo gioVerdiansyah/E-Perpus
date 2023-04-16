@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome User~</title>
+    <script
+      src="https://kit.fontawesome.com/981acb16d7.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <h1 id="darkmode" class="light"><i class="fa-solid fa-moon"></i></h1>
+        </li>
+        <li>
+          <h1 class="title">E-Perpus Mejayan</h1>
+        </li>
+        <li>
+          <div>
+            <h2>Username</h2>
+            <p>Anggota</p>
+          </div>
+          <img src="../../.temp/default.jpg" alt="" />
+        </li>
+      </ul>
+    </nav>
+
+    <header>
+      <ul>
+        <li id="home"><i class="fa-solid fa-house"></i>Home</li>
+        <li id="cari-buku" class="on">
+          <i class="fa-solid fa-book"></i>Cari Buku
+        </li>
+        <li id="riwayat">Riwayat</li>
+        <li id="info">Info Creator</li>
+      </ul>
+    </header>
+
+    <main>
+      <div class="title">
+        <h2>Cari Buku</h2>
+        <p>Data di updata secara otomatis</p>
+      </div>
+      <!-- ini.isi -->
+      <div class="data-wrapper">
+        <div class="data-indicator">
+          <div class="data-entries">
+            <p>show</p>
+            <select id="selection" name="selection">
+              <option value="10">10</option>
+              <option value="5">5</option>
+              <option value="2">2</option>
+            </select>
+            <p>entries</p>
+          </div>
+          <div class="data-search">
+            <label for="search">Search:</label>
+            <input type="search" name="search" id="search" />
+          </div>
+        </div>
+        <!-- isi data -->
+        <div class="isi-data" id="isi-data">
+          <div class="data">
+            <table width="100%">
+              <thead width="100%">
+                <th>NO</th>
+                <th>THUMBNAIL</th>
+                <th>JUDUL BUKU</th>
+                <th>KATEGORI</th>
+                <th>PENULIS</th>
+                <th>PENERBIT</th>
+                <th>ACTION</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><p>1</p></td>
+                  <td>
+                    <p>
+                      <img src="../../.temp/default.jpg" alt="" height="70" />
+                    </p>
+                  </td>
+                  <td><p>Hello word</p></td>
+                  <td><p>Pemrograman</p></td>
+                  <td><p>Verdi</p></td>
+                  <td><p>Adi</p></td>
+                  <td id="detail">
+                    <p><i class="fa-solid fa-chart-simple"></i>Detail</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="description">
+            <p>Showing 1 of 10 entries</p>
+            <div class="pagination">
+              <p class="amount-of-data">1</p>
+              <button>
+                Next
+                <i class="fa-solid fa-angle-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <h2>
+        COPYRIGHT &#x24B8;
+        <a href="https://smkn1mejayan.sch.id/" target="_blank">
+          2023 SMKN 1 MEJAYAN Kab. MADIUN</a
+        >,All rights Reserved
+      </h2>
+    </footer>
+  </body>
+</html>
