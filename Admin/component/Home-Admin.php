@@ -1,3 +1,10 @@
+<?php
+if (!isset($_SESSION["login"]) && !isset($_COOKIE["UIuDSteKukki"]) && !isset($_COOKIE["UNmeKySteKukki"])) {
+    header("Location: ../login-admin.php");
+    exit;
+}
+?>
+
 <link rel="stylesheet" href="CSS/M-dashboard.css">
 <div class="content">
     <div class="title">

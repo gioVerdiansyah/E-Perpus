@@ -1,5 +1,9 @@
 <?php
 require 'functions.php';
+if (!isset($_SESSION["login"]) && !isset($_COOKIE["UIuDSteKukki"]) && !isset($_COOKIE["UNmeKySteKukki"])) {
+    header("Location: ../login-admin.php");
+    exit;
+}
 if (isset($_POST['submit'])) {
     if (insert($_POST) > 0) {
         echo "<script>
@@ -34,10 +38,35 @@ if (isset($_POST['submit'])) {
             <label for="penerbit">Penerbit</label><br>
             <input type="text" name="penerbit" id="penerbit" required>
         </li>
-
+        <li>
+            <label for="tahun_terbit">Tahun Terbit</label><br>
+            <input type="date" name="tahun_terbit" id="tahun_terbit" required>
+        </li>
+        <li>
+            <label for="isbn">ISBN</label><br>
+            <input type="text" step="-any" name="isbn" id="isbn" required>
+        </li>
+        <li>
+            <label for="jumlah_halaman">Jumlah Halaman</label><br>
+            <input type="number" name="jumlah_halaman" id="jumlah_halaman" required>
+        </li>
+        <li>
+            <label for="sinopsis">Sinopsis Buku</label><br>
+            <textarea name="sinopsis" id="sinopsis" cols="70" rows="10"></textarea>
+        </li>
         <li>
             <label for="image">Thumbnail</label><br>
-            <input type="file" name="image" id="image" required>
+            <img src="" width="45" id="img" hidden><br>
+            <input type="file" name="image" id="gambar" onchange="
+                    let img = document.querySelector('#img');
+                    let input = document.querySelector('#gambar');
+                    let reader = new FileReader();
+                    reader.onload = function(e) {
+                        img.src = e.target.result;
+                        img.removeAttribute('hidden');
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                    ">
         </li>
 
         <li style="margin-top:5px;">

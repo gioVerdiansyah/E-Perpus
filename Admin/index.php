@@ -30,10 +30,13 @@ if ($key === hash("sha512", $row["username"])) {
     <title>HomePage Admin</title>
     <link rel="stylesheet" href="CSS/sidebar.css">
     <link rel="stylesheet" id="dm">
+    <link rel="stylesheet" href="../Welcome/CSS/User/Fraction_group.css">
     <script src="https://kit.fontawesome.com/981acb16d7.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
+    <div class="popup" hidden></div>
+
     <div class="side-bar">
         <a href="" class="icon">
             <!-- logo -->

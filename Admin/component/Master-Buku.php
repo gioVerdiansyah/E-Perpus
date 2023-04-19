@@ -1,6 +1,11 @@
 <?php
 require '../database/functions.php';
 
+if (!isset($_SESSION["login"]) && !isset($_COOKIE["UIuDSteKukki"]) && !isset($_COOKIE["UNmeKySteKukki"])) {
+    header("Location: ../login-admin.php");
+    exit;
+}
+
 $dataPerHalaman = (isset($_GET['lim'])) ? $_GET['lim'] : 10;
 $jumlahData = count(query("SELECT * FROM buku"));
 $jumlahHalaman = ceil($jumlahData / $dataPerHalaman);
@@ -80,23 +85,28 @@ $books = mysqli_query($db, "SELECT * FROM buku ORDER BY id ASC LIMIT $dataPerHal
                                 <td>
                                     <img src="Temp/<?= $book['image'] ?>" alt="Thumbnail" height="70">
                                 </td>
-                                <td style="width:16%; text-align:left;">
+                                <td class="limit">
                                     <?= $book['judul_buku'] ?>
                                 </td>
                                 <td>
                                     <?= $book['kategori'] ?>
                                 </td>
-                                <td>
+                                <td class="limit">
                                     <?= $book['penulis'] ?>
                                 </td>
-                                <td>
+                                <td class="limit">
                                     <?= $book['penerbit'] ?>
                                 </td>
                                 <td>
                                     <a href="database/update.php?id=<?= $book['id'] ?>"><i
                                             class="fa-solid fa-pen-to-square"></i></a>
                                     <a href="database/delete.php?id=<?= $book['id'] ?>"><i
-                                            class="fa-solid fa-delete-left"></i></a>
+                                            class="fa-solid fa-delete-left"></i></a><br>
+                                    <button onclick="
+                                $('.popup').load('../Welcome/component/result/fraction_group.php?bukid=<?= $book['id'] ?>');
+                                $('.popup').removeAttr('hidden');
+                                "><i class="fa-solid fa-chart-simple"></i>Detail
+                                    </button>
                                 </td>
                             </tr>
                             <?php

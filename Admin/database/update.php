@@ -1,5 +1,9 @@
 <?php
 require 'functions.php';
+if (!isset($_SESSION["login"]) && !isset($_COOKIE["UIuDSteKukki"]) && !isset($_COOKIE["UNmeKySteKukki"])) {
+    header("Location: ../login-admin.php");
+    exit;
+}
 
 $id = $_GET["id"];
 
@@ -40,11 +44,38 @@ if (isset($_POST["submit"])) {
             <label for="penerbit">Penerbit</label><br>
             <input type="text" name="penerbit" id="penerbit" required value="<?= $books["penerbit"] ?>">
         </li>
-
+        <li>
+            <label for="tahun_terbit">Tahun Terbit</label><br>
+            <input type="date" name="tahun_terbit" id="tahun_terbit" required value="<?= $books["tahun_terbit"] ?>">
+        </li>
+        <li>
+            <label for="isbn">ISBN</label><br>
+            <input type="text" name="isbn" id="isbn" required value="<?= $books["isbn"] ?>">
+        </li>
+        <li>
+            <label for="jumlah_halaman">Jumlah Halaman</label><br>
+            <input type="number" name="jumlah_halaman" id="jumlah_halaman" required
+                value="<?= $books["jumlah_halaman"] ?>">
+        </li>
+        <li>
+            <label for="sinopsis">Sinopsis Buku</label><br>
+            <textarea name="sinopsis" id="sinopsis" cols="70" rows="10"></textarea>
+            <script>
+                document.querySelector("textarea").value = "<?= $books["sinopsis"] ?>";
+            </script>
+        </li>
         <li>
             <label for="image">Thumbnail</label><br>
-            <img src="../Temp/<?= $books['image'] ?>" alt="gambar sebelumnya" height="70">
-            <input type="file" name="image" id="image">
+            <img src="../Temp/<?= $books['image'] ?>" id="img" alt="gambar sebelumnya" height="70"><br>
+            <input type="file" name="image" id="image" onchange="
+                    let img = document.querySelector('#img');
+                    let input = document.querySelector('#gambar');
+                    let reader = new FileReader();
+                    reader.onload = function(e) {
+                        img.src = e.target.result;
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                    ">
         </li>
 
         <li style="margin-top:5px;">

@@ -91,12 +91,12 @@ if (isset($_POST["submit"])) {
 
             <!-- pesan kesalahan error -->
             <?php if (isset($err)): ?>
-                <p style="color: red;margin:0;">Username atau Password salah!</p>
+            <p style="color: red;margin:0;">Username atau Password salah!</p>
             <?php endif ?>
 
             <li style="margin: 5px 0;">
                 <button type="submit" name="submit">Login!</button>
-                <a href="register.php">registrasi</a>
+                <a href="Temp/register.php">registrasi</a>
             </li>
         </ul>
     </form>

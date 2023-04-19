@@ -1,4 +1,8 @@
 <?php
+if ($_SERVER['REQUEST_URI'] == "/E-perpus/Admin/database/functions.php") {
+    header("Location: ../index.php");
+    exit();
+}
 $db = mysqli_connect(
     "localhost",
     "root",
@@ -25,6 +29,10 @@ function insert($data)
     $kategori = htmlspecialchars($data["kategori"]);
     $penulis = htmlspecialchars($data["penulis"]);
     $penerbit = htmlspecialchars($data["penerbit"]);
+    $tahun_terbit = htmlspecialchars($data["tahun_terbit"]);
+    $isbn = htmlspecialchars($data["isbn"]);
+    $jumlah_halaman = htmlspecialchars($data["jumlah_halaman"]);
+    $sinopsis = htmlspecialchars($data["sinopsis"]);
     $image = upload();
 
     if (!$image) {
@@ -32,7 +40,7 @@ function insert($data)
     }
 
     global $db;
-    $query = "INSERT INTO buku VALUES ('', '$judul_buku','$kategori','$penulis','$penerbit','$image')";
+    $query = "INSERT INTO buku VALUES ('', '$judul_buku','$kategori','$penulis','$penerbit','$image','$tahun_terbit','$isbn','$jumlah_halaman','$sinopsis')";
     mysqli_query($db, $query);
 
     return mysqli_affected_rows($db);
@@ -83,6 +91,10 @@ function updt($data)
     $judul_buku = htmlspecialchars($data["judul_buku"]);
     $kategori = htmlspecialchars($data["kategori"]);
     $penulis = htmlspecialchars($data["penulis"]);
+    $tahun_terbit = htmlspecialchars($data["tahun_terbit"]);
+    $isbn = htmlspecialchars($data["isbn"]);
+    $jumlah_halaman = htmlspecialchars($data["jumlah_halaman"]);
+    $sinopsis = htmlspecialchars($data["sinopsis"]);
     $penerbit = htmlspecialchars($data["penerbit"]);
     $oldImage = htmlspecialchars($data["oldImage"]);
 
@@ -94,7 +106,7 @@ function updt($data)
     }
 
     global $db;
-    $query = "UPDATE buku SET judul_buku = '$judul_buku', kategori = '$kategori', penulis = '$penulis', penerbit = '$penerbit' WHERE id = $id";
+    $query = "UPDATE buku SET judul_buku = '$judul_buku', kategori = '$kategori', penulis = '$penulis', penerbit = '$penerbit', tahun_terbit = '$tahun_terbit', isbn = '$isbn', jumlah_halaman = '$jumlah_halaman', sinopsis = '$sinopsis' WHERE id = $id";
     mysqli_query($db, $query);
 
     return mysqli_affected_rows($db);

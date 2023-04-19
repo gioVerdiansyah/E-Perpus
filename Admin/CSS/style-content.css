@@ -114,6 +114,10 @@ main .content-wrapper .content .download {
   tr:nth-child(even) {
   background-color: rgba(197, 197, 197, 0.678);
 }
+.content-wrapper .content .card-wrapper .isi-data table tbody tr td.limit {
+  width: 16%;
+  text-align: left;
+}
 .content-wrapper
   .content
   .card-wrapper
@@ -182,6 +186,53 @@ main .content-wrapper .content .download {
   td
   i.fa-delete-left:hover {
   background-color: rgb(228, 53, 53);
+}
+.content-wrapper
+  .content
+  .card-wrapper
+  .isi-data
+  .data
+  table
+  tbody
+  tr
+  td
+  button {
+  width: max-content;
+  margin-top: 10px !important;
+  color: white;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 3px;
+  background-color: rgb(115, 103, 240);
+  margin: 0 auto;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.content-wrapper
+  .content
+  .card-wrapper
+  .isi-data
+  .data
+  table
+  tbody
+  tr
+  td
+  button:hover {
+  background-color: rgb(66, 55, 187);
+}
+.content-wrapper
+  .content
+  .card-wrapper
+  .isi-data
+  .data
+  table
+  tbody
+  tr
+  td
+  button
+  i.fa-chart-simple {
+  margin-right: 5px;
+  transform: rotate(90deg);
 }
 
 .content-wrapper .content .card-wrapper .isi-data .description {

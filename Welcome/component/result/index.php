@@ -1,9 +1,5 @@
 <?php
-require '../../database/functions.php';
-if (!isset($_SESSION["login"]) && !isset($_COOKIE["UIuDSteKukki"]) && !isset($_COOKIE["UNmeKySteKukki"])) {
-    header("Location: ../../login-admin.php");
-    exit;
-}
+require "../../../Admin/database/functions.php";
 
 $dataPerHalaman = $_GET['lim'];
 $jumlahData = count(query("SELECT * FROM buku"));
@@ -33,42 +29,45 @@ judul_buku LIKE '%$keyword%' OR penulis LIKE '$keyword%' OR penerbit LIKE '$keyw
             </thead>
             <tbody width="100%" cellspacing="10">
                 <?php
-                $id = 1;
+                $num = 1;
                 foreach ($books as $book):
                     ?>
                     <tr cellspacing="10">
                         <td>
-                            <?= $id ?>
+                            <?= $num ?>
                         </td>
                         <td>
-                            <img src="Temp/<?= $book['image'] ?>" alt=" Thumbnail" height="70">
-                        </td>
-                        <td class="limit">
-                            <?= $book['judul_buku'] ?>
+                            <img src="../Admin/Temp/<?= $book["image"] ?>" alt="image_of_book" height="70" />
                         </td>
                         <td>
-                            <?= $book['kategori'] ?>
-                        </td>
-                        <td class="limit">
-                            <?= $book['penulis'] ?>
-                        </td>
-                        <td class="limit">
-                            <?= $book['penerbit'] ?>
+                            <p class="limit">
+                                <?= $book['judul_buku'] ?>
+                            </p>
                         </td>
                         <td>
-                            <a href="database/update.php?id=<?= $book['id'] ?>"><i
-                                    class="fa-solid fa-pen-to-square"></i></a>
-                            <a href="database/delete.php?id=<?= $book['id'] ?>"><i
-                                    class="fa-solid fa-delete-left"></i></a><br>
+                            <p>
+                                <?= $book['kategori'] ?>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="limit">
+                                <?= $book['penulis'] ?>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="limit">
+                                <?= $book['penerbit'] ?>
+                            </p>
+                        </td>
+                        <td id="detail">
                             <button onclick="
-                                $('.popup').load('../Welcome/component/result/fraction_group.php?bukid=<?= $book['id'] ?>');
+                                $('.popup').load('component/result/fraction_group.php?bukid=<?= $book['id'] ?>');
                                 $('.popup').removeAttr('hidden');
-                                "><i class="fa-solid fa-chart-simple"></i>Detail
-                            </button>
+                                "><i class="fa-solid fa-chart-simple"></i>Detail</button>
                         </td>
                     </tr>
                     <?php
-                    $id++;
+                    $num++;
                 endforeach;
                 ?>
             </tbody>
@@ -76,7 +75,7 @@ judul_buku LIKE '%$keyword%' OR penulis LIKE '$keyword%' OR penerbit LIKE '$keyw
     </div>
     <div class="description">
         <p>Showing
-            <?= $id -= 1; ?> of
+            <?= $num -= 1; ?> of
             <?= $dataPerHalaman ?> entries
         </p>
 

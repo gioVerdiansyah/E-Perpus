@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION["login"]) || !isset($_COOKIE["UIuDSteKukki"]) || !isset($_COOKIE["UNmeKySteKukki"])) {
+    header("Location: login-admin.php");
+    exit;
+}
 
 $_SESSION = []; //menimpa array agar session benar-benar kosong
 session_unset();

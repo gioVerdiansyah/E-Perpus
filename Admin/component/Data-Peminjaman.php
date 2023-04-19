@@ -1,3 +1,10 @@
+<?php
+if (!isset($_SESSION["login"]) && !isset($_COOKIE["UIuDSteKukki"]) && !isset($_COOKIE["UNmeKySteKukki"])) {
+    header("Location: ../login-admin.php");
+    exit;
+}
+?>
+
 <link rel="stylesheet" href="CSS/style-content.css">
 <div class="title">
     <h1>Peminjaman</h1>
