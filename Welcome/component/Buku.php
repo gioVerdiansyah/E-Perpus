@@ -69,7 +69,8 @@ $buku = mysqli_query($db, "SELECT * FROM buku ORDER BY id  ASC LIMIT $dataPerHal
                             </td>
                             <td>
                                 <p>
-                                    <img src="../Admin/Temp/<?= $books["image"] ?>" alt="image_of_book" height="70" />
+                                    <img src="../Admin/Temp/<?= $books["image"] ?>"
+                                        alt="image of book: <?= $books['judul_buku'] ?>" height="70" />
                                 </p>
                             </td>
                             <td>
@@ -95,7 +96,7 @@ $buku = mysqli_query($db, "SELECT * FROM buku ORDER BY id  ASC LIMIT $dataPerHal
                             <td id="detail">
                                 <button onclick="
                                 $('.popup').load('component/result/fraction_group.php?bukid=<?= $books['id'] ?>');
-                                $('.popup').removeAttr('hidden');
+                                $('.popup').removeAttr('hidden')
                                 "><i class="fa-solid fa-chart-simple"></i>Detail</button>
                             </td>
                         </tr>

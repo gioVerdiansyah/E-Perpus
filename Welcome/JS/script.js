@@ -15,4 +15,9 @@ $(document).ready(function () {
         e.preventDefault();
         onClick(this, "component/Buku.php");
     });
+
+    $("#riwayat").click(function (e) { 
+        e.preventDefault();
+        onClick(this, "component/History.htm");
+    });
 });

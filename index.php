@@ -9,7 +9,7 @@ if (isset($_COOKIE["UUsSRlGnEQthORoe"]) && isset($_COOKIE["UDsSRlGnEQthORue"])) 
   $key = $_COOKIE["UDsSRlGnEQthORue"];
 
   // cek username berdasarkan id
-  $result = mysqli_query($db, "SELECT username FROM loginadmin WHERE id='$id'");
+  $result = mysqli_query($db, "SELECT username FROM loginuser WHERE id='$id'");
   $row = mysqli_fetch_assoc($result); //ambil
 
   // cek COOKIE dan username
@@ -23,6 +23,8 @@ if (isset($_SESSION["login-user"])) {
   exit;
 }
 
+
+
 if (isset($_POST["submit"])) {
   // tampung
   $username = $_POST["username"];
@@ -33,17 +35,21 @@ if (isset($_POST["submit"])) {
   // cek username-nya
   if (mysqli_num_rows($result) === 1) {
 
+
     // cek password
     $row = mysqli_fetch_assoc($result);
     if (password_verify($pass, $row["pass"])) {
 
+
       // cek input checkbox Remember Me!
       if (isset($_POST["remember"])) {
+
         // buat COOKIE
         $time = time() + 60 * 60 * 24;
         setcookie("UUsSRlGnEQthORoe", $row["id"], $time);
         setcookie("UDsSRlGnEQthORue", hash("sha512", $row["username"]), $time);
       }
+
 
       // cek session
       $_SESSION["login-user"] = true;
@@ -61,42 +67,43 @@ if (isset($_POST["submit"])) {
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login dulu~</title>
-  <link rel="stylesheet" href="Welcome/CSS/index.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login dulu~</title>
+    <link rel="stylesheet" href="Welcome/CSS/index.css" />
 </head>
 
 <body>
-  <div class="image">
-    <!-- <img src="Welcome/Assets/bg6-2.svg" alt="bg6-2.svg" /> -->
-  </div>
-  <main>
-    <h1>Selamat Datang <span id="hello">&#128075</span></h1>
-    <form action="" method="post">
-      <ul>
-        <li>
-          <label for="username">Username</label>
-          <input type="text" name="username" id="username" placeholder="Masukkan nama" maxlength="64" required />
-        </li>
-        <li>
-          <label for="pass">Password</label>
-          <input type="password" name="pass" id="pass" maxlength="144" required />
-        </li>
-        <li><input type="checkbox" name="remember" checked /> Remember Me</li>
-        <li>
-          <?php if (isset($err)): ?>
-            <p class="error">Username atau Password salah!</p>
-          <?php endif ?>
-        </li>
-        <li>
-          <button type="submit" name="submit">Send</button>
-        </li>
-      </ul>
-    </form>
-    <p>Belum terdaftar menjadi Anggota? <a href="register.php">daftar</a></p>
-  </main>
+    <div class="image">
+        <!-- <img src="Welcome/Assets/bg6-2.svg" alt="bg6-2.svg" /> -->
+    </div>
+    <main>
+        <h1>Selamat Datang <span id="hello">&#128075</span></h1>
+        <form action="" method="post">
+            <ul>
+                <li>
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" placeholder="Masukkan nama" maxlength="64"
+                        required />
+                </li>
+                <li>
+                    <label for="pass">Password</label>
+                    <input type="password" name="pass" id="pass" maxlength="144" required />
+                </li>
+                <li><input type="checkbox" name="remember" checked /> Remember Me</li>
+                <li>
+                    <?php if (isset($err)): ?>
+                    <p class="error">Username atau Password salah!</p>
+                    <?php endif ?>
+                </li>
+                <li>
+                    <button type="submit" name="submit">Send</button>
+                </li>
+            </ul>
+        </form>
+        <p>Belum terdaftar menjadi Anggota? <a href="register.php">daftar</a></p>
+    </main>
 </body>
 
 </html>
