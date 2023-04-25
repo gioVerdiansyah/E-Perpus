@@ -1,0 +1,39 @@
+main {
+  width: 90%;
+  margin: 0 auto;
+  background-color: white;
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: 3px 1px 5px rgba(0, 0, 0, 0.2), -2px -1px 3px rgba(0, 0, 0, 0.2);
+}
+.isi-data .data {
+  display: flex;
+  flex-direction: row;
+}
+.isi-data .data #masuk,
+.isi-data .data #keluar {
+  width: 30%;
+}
+.isi-data .data #meminjam {
+  width: 40%;
+}
+.isi-data .data #masuk h1,
+.isi-data .data #keluar h1,
+.isi-data .data #meminjam h1 {
+  background-color: rgb(197, 197, 197);
+  color: rgb(43, 43, 43);
+  border-bottom: 2px solid;
+  padding: 10px 5px;
+  text-align: center;
+  font-size: large;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.isi-data .data #masuk div:nth-child(even),
+.isi-data .data #keluar div:nth-child(even) {
+  background-color: rgba(197, 197, 197, 0.678);
+}
+.isi-data .data #masuk div p,
+.isi-data .data #keluar div p {
+  text-align: center;
+  padding: 10px;
+}

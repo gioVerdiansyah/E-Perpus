@@ -41,6 +41,9 @@ main .data-wrapper .data-indicator .data-entries select#selection {
 .data-wrapper .isi-data .data table tbody tr td:nth-child(2) {
   text-align: center;
 }
+.data-wrapper .isi-data .data table tbody tr:nth-child(even) {
+  background-color: rgba(197, 197, 197, 0.678);
+}
 .data-wrapper .isi-data .data table tbody tr td {
   padding: 20px 0;
 }

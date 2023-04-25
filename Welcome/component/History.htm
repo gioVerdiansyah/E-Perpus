@@ -1,10 +1,53 @@
+<link rel="stylesheet" href="CSS/User/History.css" />
 <div class="isi-data" id="isi-data">
   <div class="data">
-    <table width="100%">
-      <thead width="100%">
-        <th>Masuk pada</th>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <div id="masuk"></div>
+    <div id="keluar"></div>
+    <div id="meminjam">
+      <h1>Meminjam</h1>
+    </div>
   </div>
 </div>
+<script>
+  function showHistory() {
+    if (typeof Storage !== "undefined") {
+      let historyData = JSON.parse(
+        localStorage.getItem("HISTORY_E-PERPUS_MEJAYAN")
+      ) || [[], []];
+
+      let result = {
+        enter: historyData[0],
+        out: historyData[1],
+      };
+
+      return result;
+    } else {
+      return [[], []];
+    }
+  }
+
+  function renderHistory() {
+    const historyDataEnter = showHistory().enter;
+    const historyDataOut = showHistory().out;
+    let historyListEnter = document.querySelector("#isi-data .data #masuk");
+    let historyListOut = document.querySelector("#isi-data .data #keluar");
+
+    // selalu hapus konten HTML pada elemen historyList agar tidak menampilkan data ganda
+    historyListEnter.innerHTML = "<h1>Masuk</h1>";
+    historyListOut.innerHTML = "<h1>Keluar</h1>";
+
+    for (let history of historyDataEnter) {
+      let row = document.createElement("div");
+      row.innerHTML = "<p>" + history.enterValue + "</p>";
+
+      historyListEnter.appendChild(row);
+    }
+    for (let history of historyDataOut) {
+      let row = document.createElement("div");
+      row.innerHTML = "<p>" + history.outValue + "</p>";
+
+      historyListOut.appendChild(row);
+    }
+  }
+  renderHistory();
+</script>

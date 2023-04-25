@@ -13,7 +13,7 @@ function date() {
     const day = date.getDate();
     const hours = date.getHours();
     const minutes = date.getMinutes();
-    return hours + ":" + minutes + "\n" + day + "/" + month + "/" + year;
+    return hours + ":" + minutes + "<br>" + day + "/" + month + "/" + year;
   }
 
 // push ke local storage
@@ -32,7 +32,7 @@ function putHistory(data,i) {
 
         historyData[i].unshift(data);
 
-        if (historyData[i].length > 100) {
+        if (historyData[i].length > 25) {
             historyData[i].pop();
         }
 
@@ -61,35 +61,4 @@ window.addEventListener('beforeunload', function(event) {
     putHistory(historyDataStorageUser,1);
     }
     localStorage.removeItem(CACHE_KEY + "(visited)");
-    renderHistory();
   });
-
-let storages = localStorage.getItem("HISTORY_E-PERPUS_MEJAYAN");
-let item = JSON.parse(storages);
-let lengthItem = item[1].length;
-
-function showHistory() {
-    if (checkForStorage()) {
-        return JSON.parse(localStorage.getItem("HISTORY_E-PERPUS_MEJAYAN"))[0] || [];
-    } else {
-        return [];
-    }
-}
-
-function renderHistory() {
-    const historyData = showHistory();
-    let historyList = document.querySelector("#isi-data .data table tbody");
-
-
-    // selalu hapus konten HTML pada elemen historyList agar tidak menampilkan data ganda
-    historyList.innerHTML = "";
-
-
-    for (let history of historyData) {
-        let row = document.createElement('tr');
-        row.innerHTML = "<td>" + history.enterValue + "</td>";
-
-
-        historyList.appendChild(row);
-    }
-}
