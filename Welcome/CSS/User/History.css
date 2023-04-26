@@ -6,20 +6,57 @@ main {
   border-radius: 3px;
   box-shadow: 3px 1px 5px rgba(0, 0, 0, 0.2), -2px -1px 3px rgba(0, 0, 0, 0.2);
 }
+.isi-data .data-indicator {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.isi-data .data-indicator button#button,
+.isi-data .data-indicator button#print {
+  cursor: pointer;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s;
+}
+.isi-data .data-indicator button#print {
+  background-color: rgb(255, 159, 67);
+}
+.isi-data .data-indicator button#print:hover {
+  background-color: rgb(233, 127, 28);
+}
+.isi-data .data-indicator button#button {
+  background-color: rgb(234, 84, 85);
+}
+.isi-data .data-indicator button#button:hover {
+  background-color: rgb(228, 53, 53);
+}
+.isi-data .data-indicator button#button i,
+.isi-data .data-indicator button#print i {
+  margin: 0 5px;
+}
 .isi-data .data {
   display: flex;
   flex-direction: row;
+  margin-top: 5px;
 }
 .isi-data .data #masuk,
 .isi-data .data #keluar {
   width: 30%;
 }
-.isi-data .data #meminjam {
+.isi-data .data #membaca {
   width: 40%;
 }
 .isi-data .data #masuk h1,
 .isi-data .data #keluar h1,
-.isi-data .data #meminjam h1 {
+.isi-data .data #membaca h1,
+.isi-data .data #masuk h2,
+.isi-data .data #keluar h2,
+.isi-data .data #membaca h2 {
   background-color: rgb(197, 197, 197);
   color: rgb(43, 43, 43);
   border-bottom: 2px solid;
@@ -29,11 +66,22 @@ main {
   font-family: Arial, Helvetica, sans-serif;
 }
 .isi-data .data #masuk div:nth-child(even),
-.isi-data .data #keluar div:nth-child(even) {
+.isi-data .data #keluar div:nth-child(even),
+.isi-data .data #membaca div:nth-child(even) {
   background-color: rgba(197, 197, 197, 0.678);
 }
 .isi-data .data #masuk div p,
-.isi-data .data #keluar div p {
+.isi-data .data #keluar div p,
+.isi-data .data #membaca div p {
   text-align: center;
   padding: 10px;
+}
+.isi-data .data #masuk h2,
+.isi-data .data #keluar h2,
+.isi-data .data #membaca h2 {
+  font-style: italic;
+  border-bottom: none;
+  font-size: medium !important;
+  background-color: rgba(197, 197, 197, 0.678);
+  padding: 20px 5px;
 }

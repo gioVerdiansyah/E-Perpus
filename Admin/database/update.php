@@ -58,10 +58,14 @@ if (isset($_POST["submit"])) {
                 value="<?= $books["jumlah_halaman"] ?>">
         </li>
         <li>
+            <label for="link" title="isi 404 jika E-Book tidak ada!">Link Buku</label><br>
+            <input type="text" name="link" id="link" required value="<?= $books['link'] ?>">
+        </li>
+        <li>
             <label for="sinopsis">Sinopsis Buku</label><br>
             <textarea name="sinopsis" id="sinopsis" cols="70" rows="10"></textarea>
             <script>
-                document.querySelector("textarea").value = "<?= $books["sinopsis"] ?>";
+            document.querySelector("textarea").value = "<?= $books["sinopsis"] ?>";
             </script>
         </li>
         <li>

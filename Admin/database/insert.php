@@ -17,6 +17,11 @@ if (isset($_POST['submit'])) {
 ?>
 
 <form action="" method="post" enctype="multipart/form-data">
+    <style>
+    ul li input {
+        width: 30%;
+    }
+    </style>
     <ul style="list-style-type:none;">
 
         <li>
@@ -51,6 +56,10 @@ if (isset($_POST['submit'])) {
             <input type="number" name="jumlah_halaman" id="jumlah_halaman" required>
         </li>
         <li>
+            <label for="link" title="isi 404 jika E-Book tidak ada!">Link Buku</label><br>
+            <input type="text" name="link" id="link" required placeholder="Ketik 404 jika E-Book buku tidak ada">
+        </li>
+        <li>
             <label for="sinopsis">Sinopsis Buku</label><br>
             <textarea name="sinopsis" id="sinopsis" cols="70" rows="10"></textarea>
         </li>
@@ -68,7 +77,6 @@ if (isset($_POST['submit'])) {
                     reader.readAsDataURL(input.files[0]);
                     ">
         </li>
-
         <li style="margin-top:5px;">
             <button type="submit" name="submit">Send</button>
             <button type="reset">Reset</button>

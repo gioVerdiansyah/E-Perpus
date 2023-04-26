@@ -1,11 +1,23 @@
 <link rel="stylesheet" href="CSS/User/History.css" />
 <div class="isi-data" id="isi-data">
+  <div class="data-indicator">
+    <button
+      id="button"
+      onclick="
+    localStorage.clear();
+  $('main').load('component/History.htm');
+  $('*').removeClass('on');
+  $('#riwayat').addClass('on');
+  "
+    >
+      Hapus Riwayat <i class="fa-solid fa-trash"></i>
+    </button>
+    <button id="print"><i class="fa-solid fa-print"></i> Cetak History</button>
+  </div>
   <div class="data">
     <div id="masuk"></div>
     <div id="keluar"></div>
-    <div id="meminjam">
-      <h1>Meminjam</h1>
-    </div>
+    <div id="membaca"></div>
   </div>
 </div>
 <script>
@@ -13,28 +25,54 @@
     if (typeof Storage !== "undefined") {
       let historyData = JSON.parse(
         localStorage.getItem("HISTORY_E-PERPUS_MEJAYAN")
-      ) || [[], []];
+      ) || [[], [], []];
 
       let result = {
         enter: historyData[0],
         out: historyData[1],
+        read: historyData[2],
       };
 
       return result;
     } else {
-      return [[], []];
+      return [[], [], []];
     }
   }
 
   function renderHistory() {
     const historyDataEnter = showHistory().enter;
     const historyDataOut = showHistory().out;
+    const historyDataRead = showHistory().read;
     let historyListEnter = document.querySelector("#isi-data .data #masuk");
     let historyListOut = document.querySelector("#isi-data .data #keluar");
+    let historyListRead = document.querySelector("#isi-data .data #membaca");
 
     // selalu hapus konten HTML pada elemen historyList agar tidak menampilkan data ganda
-    historyListEnter.innerHTML = "<h1>Masuk</h1>";
-    historyListOut.innerHTML = "<h1>Keluar</h1>";
+    if (localStorage.getItem("HISTORY_E-PERPUS_MEJAYAN") === null) {
+      document.getElementById("button").style.display = "none";
+      document.getElementById("print").style.display = "none";
+      historyListEnter.innerHTML = "<h1>Masuk</h1> <h2>no data yet!</h2>";
+      historyListRead.innerHTML =
+        "<h1>Membaca Buku</h1> <h2>haven't read the book</h2>";
+      historyListOut.innerHTML = "<h1>Keluar</h1> <h2>no data yet!</h2>";
+    } else {
+      $(document).ready(function () {
+        $("#membaca div h2").css("padding", "19px 5px");
+      });
+      document.getElementById("button").style.display = "inherit";
+      document.getElementById("print").style.display = "inherit";
+      historyListEnter.innerHTML = "<h1>Masuk</h1>";
+      historyListOut.innerHTML = "<h1>Keluar</h1>";
+    }
+
+    if (showHistory().read.length === 0) {
+      putHistory(
+        {
+          outValue: "<h1>Membaca Buku</h1> <h2>haven't read the book</h2>",
+        },
+        2
+      );
+    }
 
     for (let history of historyDataEnter) {
       let row = document.createElement("div");
@@ -47,6 +85,12 @@
       row.innerHTML = "<p>" + history.outValue + "</p>";
 
       historyListOut.appendChild(row);
+    }
+    for (let history of historyDataRead) {
+      let row = document.createElement("div");
+      row.innerHTML = history.outValue;
+
+      historyListRead.appendChild(row);
     }
   }
   renderHistory();

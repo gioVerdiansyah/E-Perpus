@@ -33,14 +33,19 @@ function insert($data)
     $isbn = htmlspecialchars($data["isbn"]);
     $jumlah_halaman = htmlspecialchars($data["jumlah_halaman"]);
     $sinopsis = htmlspecialchars($data["sinopsis"]);
+    $link = htmlspecialchars($data["link"]);
     $image = upload();
+
+    if (strpos($link, "404") !== false) {
+        $link = "../component/Not-Found.php";
+    }
 
     if (!$image) {
         return false;
     }
 
     global $db;
-    $query = "INSERT INTO buku VALUES ('', '$judul_buku','$kategori','$penulis','$penerbit','$image','$tahun_terbit','$isbn','$jumlah_halaman','$sinopsis')";
+    $query = "INSERT INTO buku VALUES ('', '$judul_buku','$kategori','$penulis','$penerbit','$image','$tahun_terbit','$isbn','$jumlah_halaman','$sinopsis', '$link')";
     mysqli_query($db, $query);
 
     return mysqli_affected_rows($db);
@@ -96,8 +101,13 @@ function updt($data)
     $jumlah_halaman = htmlspecialchars($data["jumlah_halaman"]);
     $sinopsis = htmlspecialchars($data["sinopsis"]);
     $penerbit = htmlspecialchars($data["penerbit"]);
+    $link = htmlspecialchars($data["link"]);
     $oldImage = htmlspecialchars($data["oldImage"]);
 
+
+    if (strpos($link, "404") !== false) {
+        $link = "../component/Not-Found.php";
+    }
 
     if ($_FILES["image"]["error"] === 4) {
         $image = $oldImage;
@@ -106,7 +116,7 @@ function updt($data)
     }
 
     global $db;
-    $query = "UPDATE buku SET judul_buku = '$judul_buku', kategori = '$kategori', penulis = '$penulis', penerbit = '$penerbit', tahun_terbit = '$tahun_terbit', isbn = '$isbn', jumlah_halaman = '$jumlah_halaman', sinopsis = '$sinopsis' WHERE id = $id";
+    $query = "UPDATE buku SET judul_buku = '$judul_buku', kategori = '$kategori', penulis = '$penulis', penerbit = '$penerbit', tahun_terbit = '$tahun_terbit', isbn = '$isbn', jumlah_halaman = '$jumlah_halaman', sinopsis = '$sinopsis', link = '$link' WHERE id = $id";
     mysqli_query($db, $query);
 
     return mysqli_affected_rows($db);

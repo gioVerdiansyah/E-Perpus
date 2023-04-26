@@ -105,6 +105,13 @@ main .content-wrapper .content .download {
 .content-wrapper .content .card-wrapper .isi-data table tbody tr td {
   padding: 20px 0;
 }
+.content-wrapper .content .card-wrapper .isi-data table tbody tr a {
+  text-decoration: underline;
+  transition: all 0.3s;
+}
+.content-wrapper .content .card-wrapper .isi-data table tbody tr a:hover {
+  color: rgb(93, 81, 226);
+}
 .content-wrapper
   .content
   .card-wrapper

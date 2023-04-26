@@ -1,5 +1,4 @@
 let historyDataStorageUser = {
-    Name: null,
     Value: null
 } 
 let CACHE_KEY = "HISTORY_E-PERPUS_MEJAYAN";
@@ -23,6 +22,7 @@ function putHistory(data,i) {
         if (localStorage.getItem(CACHE_KEY) === null) {
             historyData = [
                 [],
+                [{outName: "keluar", outValue: "Blank <br> Data"}],
                 []
             ];
         localStorage.setItem(CACHE_KEY, JSON.stringify(historyData[i]));
@@ -42,7 +42,6 @@ function putHistory(data,i) {
 // add masuk
 function putData() {
     historyDataStorageUser = {
-        enterName: "masuk",
         enterValue: date()
     }
     if(!localStorage.getItem(CACHE_KEY + "(visited)")){
@@ -54,7 +53,6 @@ putData();
 // add keluar
 window.addEventListener('beforeunload', function(event) {
     historyDataStorageUser = {
-        outName: "keluar",
         outValue: date()
     }
     if(localStorage.getItem(CACHE_KEY + "(visited)")){
