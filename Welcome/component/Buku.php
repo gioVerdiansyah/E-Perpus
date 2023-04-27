@@ -16,9 +16,9 @@ $buku = mysqli_query($db, "SELECT * FROM buku ORDER BY id  ASC LIMIT $dataPerHal
 <link rel="stylesheet" href="CSS/User/Fraction_group.css" />
 <div class="title">
     <h2>Cari Buku</h2>
-    <p>Data di updata secara otomatis</p>
+    <p>Data di update secara otomatis</p>
 </div>
-
+</script>
 <!-- ini.isi -->
 <div class="data-wrapper">
     <div class="data-indicator">
@@ -35,12 +35,12 @@ $buku = mysqli_query($db, "SELECT * FROM buku ORDER BY id  ASC LIMIT $dataPerHal
             <p>entries</p>
         </div>
         <div class="data-search">
-            <label for="search">Search:</label>
+            <label for="search">Search by</label>
             <input type="search" name="search" id="search" onkeyup="
             $('#isi-data').load(
                     'component/result/index.php?lim=' + $('#selection').val() + '&&page=<?= $halamanAktif ?>&&key=' + $(this).val()
                 )
-            " />
+            " placeholder="judul buku/penulis/penerbit" />
         </div>
     </div>
     <!-- isi data -->
@@ -61,47 +61,50 @@ $buku = mysqli_query($db, "SELECT * FROM buku ORDER BY id  ASC LIMIT $dataPerHal
                     $num = 1;
                     foreach ($buku as $books):
                         ?>
-                    <tr>
-                        <td>
-                            <p>
-                                <?= $num ?>
-                            </p>
-                        </td>
-                        <td>
-                            <p>
-                                <img src="../Admin/Temp/<?= $books["image"] ?>"
-                                    alt="image of book: <?= $books['judul_buku'] ?>" height="70" />
-                            </p>
-                        </td>
-                        <td>
-                            <p class="limit">
-                                <?= $books["judul_buku"] ?>
-                            </p>
-                        </td>
-                        <td>
-                            <p>
-                                <?= $books["kategori"] ?>
-                            </p>
-                        </td>
-                        <td>
-                            <p class="limit">
-                                <?= $books["penulis"] ?>
-                            </p>
-                        </td>
-                        <td>
-                            <p class="limit">
-                                <?= $books["penerbit"] ?>
-                            </p>
-                        </td>
-                        <td id="detail">
-                            <a href="<?= $books['link'] ?>" id="read-book"><button>Baca Buku</button></a>
-                            <button onclick="
+                        <tr>
+                            <td>
+                                <p>
+                                    <?= $num ?>
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    <img src="../Admin/Temp/<?= $books["image"] ?>"
+                                        alt="image of book: <?= $books['judul_buku'] ?>" height="70" />
+                                </p>
+                            </td>
+                            <td>
+                                <p class="limit">
+                                    <?= $books["judul_buku"] ?>
+                                </p>
+                            </td>
+                            <td>
+                                <p>
+                                    <?= $books["kategori"] ?>
+                                </p>
+                            </td>
+                            <td>
+                                <p class="limit">
+                                    <?= $books["penulis"] ?>
+                                </p>
+                            </td>
+                            <td>
+                                <p class="limit">
+                                    <?= $books["penerbit"] ?>
+                                </p>
+                            </td>
+                            <td id="detail">
+                                <a href="<?= $books['link'] ?>" id="read-book"><button onclick="
+                                    let buku = '<?= $books['judul_buku'] ?>';
+                                    let val = {buku: buku,value: date().khusus};putHistory(val, 2);
+                                ">Baca Buku</button></a>
+                                <button onclick="
                                 $('.popup').load('component/result/fraction_group.php?bukid=<?= $books['id'] ?>');
                                 $('.popup').removeAttr('hidden')
                                 "><i class="fa-solid fa-chart-simple"></i>Detail</button>
-                        </td>
-                    </tr>
-                    <?php $num++; endforeach;
+                            </td>
+                        </tr>
+                        <?php $num++; endforeach;
                     ?>
                 </tbody>
             </table>
@@ -113,24 +116,15 @@ $buku = mysqli_query($db, "SELECT * FROM buku ORDER BY id  ASC LIMIT $dataPerHal
             <div class="pagination">
                 <p class="amount-of-data">1</p>
                 <?php if ($halamanAktif < $jumlahHalaman): ?>
-                <button onclick="
+                    <button onclick="
                     $('.isi-data').load(
                         'component/result/index.php?lim=<?= $dataPerHalaman ?>&&page=<?= $halamanAktif + 1 ?>&&key=' + $('#search').val())'
                     )">
-                    Next
-                    <i class="fa-solid fa-angle-right"></i>
-                </button>
+                        Next
+                        <i class="fa-solid fa-angle-right"></i>
+                    </button>
                 <?php endif ?>
             </div>
         </div>
     </div>
 </div>
-<script>
-("#isi-data .data table tbody tr td#detail #read-book").click(function(e) {
-    e.preventDefault();
-    historyDataStorageUser = {
-        outValue: date()
-    }
-    putHistory(historyDataStorageUser, 2)
-});
-</script>

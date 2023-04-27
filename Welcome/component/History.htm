@@ -48,13 +48,16 @@
     let historyListRead = document.querySelector("#isi-data .data #membaca");
 
     // selalu hapus konten HTML pada elemen historyList agar tidak menampilkan data ganda
-    if (localStorage.getItem("HISTORY_E-PERPUS_MEJAYAN") === null) {
+    if (localStorage.getItem(CACHE_KEY) === null) {
       document.getElementById("button").style.display = "none";
       document.getElementById("print").style.display = "none";
-      historyListEnter.innerHTML = "<h1>Masuk</h1> <h2>no data yet!</h2>";
+      historyListEnter.innerHTML = "<h1>Masuk</h1> <h2>Belum ada data!</h2>";
       historyListRead.innerHTML =
-        "<h1>Membaca Buku</h1> <h2>haven't read the book</h2>";
-      historyListOut.innerHTML = "<h1>Keluar</h1> <h2>no data yet!</h2>";
+        "<h1>Membaca Buku</h1> <h2>Tidak membaca buku</h2>";
+      historyListOut.innerHTML = "<h1>Keluar</h1> <h2>Belum ada data!</h2>";
+      $(".isi-data .data-indicator").html(
+        "<button id='refresh-btn' onclick='location.reload();$(this).remove();'>Refresh <i class='fa-sharp fa-solid fa-arrows-rotate'></i></button>"
+      );
     } else {
       $(document).ready(function () {
         $("#membaca div h2").css("padding", "19px 5px");
@@ -63,34 +66,42 @@
       document.getElementById("print").style.display = "inherit";
       historyListEnter.innerHTML = "<h1>Masuk</h1>";
       historyListOut.innerHTML = "<h1>Keluar</h1>";
+      historyListRead.innerHTML = "<h1>Membaca Buku</h1>";
     }
 
-    if (showHistory().read.length === 0) {
-      putHistory(
-        {
-          outValue: "<h1>Membaca Buku</h1> <h2>haven't read the book</h2>",
-        },
-        2
-      );
+    function history(historyData, historyList) {
+      for (let history of historyData) {
+        let row = document.createElement("div");
+        row.innerHTML = "<p>" + history.value + "</p>";
+
+        historyList.appendChild(row);
+      }
     }
 
-    for (let history of historyDataEnter) {
-      let row = document.createElement("div");
-      row.innerHTML = "<p>" + history.enterValue + "</p>";
-
-      historyListEnter.appendChild(row);
-    }
-    for (let history of historyDataOut) {
-      let row = document.createElement("div");
-      row.innerHTML = "<p>" + history.outValue + "</p>";
-
-      historyListOut.appendChild(row);
-    }
+    history(historyDataEnter, historyListEnter);
+    history(historyDataOut, historyListOut);
     for (let history of historyDataRead) {
       let row = document.createElement("div");
-      row.innerHTML = history.outValue;
-
+      if (history.buku == null) {
+        row.innerHTML = "<h2>Tidak membaca buku</h2>";
+      } else {
+        row.innerHTML =
+          "<p>" + history.buku + "<br> Pada: " + history.value + "</p>";
+      }
       historyListRead.appendChild(row);
+    }
+    let historyDataHasBeenDeleted = false;
+    try {
+      let data = JSON.parse(localStorage.getItem(CACHE_KEY));
+      if (data[2][0].name === "reading") {
+        data.splice(2, 1, ["Tidak membaca buku"]);
+        localStorage.setItem(CACHE_KEY, JSON.stringify(data));
+      }
+    } catch (e) {
+      if (!historyDataHasBeenDeleted) {
+        console.log("Data riwayat telah di hapus!");
+        historyDataHasBeenDeleted = true;
+      }
     }
   }
   renderHistory();

@@ -12,7 +12,8 @@ main {
   justify-content: space-between;
 }
 .isi-data .data-indicator button#button,
-.isi-data .data-indicator button#print {
+.isi-data .data-indicator button#print,
+.isi-data .data-indicator button#refresh-btn {
   cursor: pointer;
   color: white;
   border: none;
@@ -35,8 +36,15 @@ main {
 .isi-data .data-indicator button#button:hover {
   background-color: rgb(228, 53, 53);
 }
+.isi-data .data-indicator button#refresh-btn {
+  background-color: rgb(41, 240, 74);
+}
+.isi-data .data-indicator button#refresh-btn:hover {
+  background-color: rgb(21, 190, 49);
+}
 .isi-data .data-indicator button#button i,
-.isi-data .data-indicator button#print i {
+.isi-data .data-indicator button#print i,
+.isi-data .data-indicator button#refresh-btn i {
   margin: 0 5px;
 }
 .isi-data .data {
@@ -84,4 +92,7 @@ main {
   font-size: medium !important;
   background-color: rgba(197, 197, 197, 0.678);
   padding: 20px 5px;
+}
+.isi-data .data #membaca div h2 {
+  background-color: rgba(197, 197, 197, 0);
 }

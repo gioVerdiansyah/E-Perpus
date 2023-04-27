@@ -12,7 +12,11 @@ function date() {
     const day = date.getDate();
     const hours = date.getHours();
     const minutes = date.getMinutes();
-    return hours + ":" + minutes + "<br>" + day + "/" + month + "/" + year;
+    let spcl = {
+        normal: hours + ":" + minutes + "<br>" + day + "/" + month + "/" + year,
+        khusus: hours + ":" + minutes + "/" + day + "/" + month + "/" + year
+    }
+    return spcl;
   }
 
 // push ke local storage
@@ -22,8 +26,8 @@ function putHistory(data,i) {
         if (localStorage.getItem(CACHE_KEY) === null) {
             historyData = [
                 [],
-                [{outName: "keluar", outValue: "Blank <br> Data"}],
-                []
+                [{value: "Data<br> Kosong"}],
+                [{name: "reading", value: "Belum membaca buku"}]
             ];
         localStorage.setItem(CACHE_KEY, JSON.stringify(historyData[i]));
         } else {
@@ -42,7 +46,7 @@ function putHistory(data,i) {
 // add masuk
 function putData() {
     historyDataStorageUser = {
-        enterValue: date()
+        value: date().normal
     }
     if(!localStorage.getItem(CACHE_KEY + "(visited)")){
         putHistory(historyDataStorageUser,0);
@@ -50,10 +54,11 @@ function putData() {
     }
 }
 putData();
+
 // add keluar
 window.addEventListener('beforeunload', function(event) {
     historyDataStorageUser = {
-        outValue: date()
+        value: date().normal
     }
     if(localStorage.getItem(CACHE_KEY + "(visited)")){
     putHistory(historyDataStorageUser,1);

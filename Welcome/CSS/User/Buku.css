@@ -27,6 +27,19 @@ main .data-wrapper .data-indicator .data-entries select#selection {
   padding: 3px;
   border-radius: 5px;
 }
+main .data-wrapper .data-indicator .data-search {
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
+}
+main .data-wrapper .data-indicator .data-search label {
+  text-align: right;
+  margin-right: 10px;
+}
+main .data-wrapper .data-indicator .data-search input {
+  width: 90%;
+  padding: 3px 2px;
+}
 .data-wrapper .isi-data .data table {
   border-collapse: collapse;
 }
