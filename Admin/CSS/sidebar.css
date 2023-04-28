@@ -128,6 +128,7 @@ h1 img {
 }
 .dropdown-icon {
   transform: translateY(3px) translateX(35px);
+  transition: all 0.3s;
 }
 .side-bar ul li.dropdown .list-master-data li h3 {
   width: max-content;
@@ -198,11 +199,31 @@ main {
   background-color: #ffffff;
   position: relative;
 }
-
-.content-wrapper .heading h1 {
-  height: 30px;
-  transform: rotate(-25deg);
+.content-wrapper .heading .action {
+  display: flex;
+  align-items: center;
+}
+.content-wrapper .heading .action button {
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  margin: 0 10px;
   cursor: pointer;
+}
+.content-wrapper .heading .action button span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  margin: 5px 0;
+  background-color: grey;
+  transition: all 0.3s;
+}
+
+.content-wrapper .heading .action button i {
+  font-size: large;
+}
+.content-wrapper .heading .action #darkmode i {
+  font-size: x-large;
+  transform: rotate(-25deg);
 }
 
 .content-wrapper .heading .profile {

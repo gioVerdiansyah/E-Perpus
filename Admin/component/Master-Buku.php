@@ -63,7 +63,7 @@ main {
         <!-- isi data -->
         <div class="isi-data" id="isi-data">
             <div class="data">
-                <table width="100%">
+                <table width="100%" cols="7">
                     <thead width="100%">
                         <th>NO</th>
                         <th>THUMBNAIL</th>
@@ -73,12 +73,12 @@ main {
                         <th>PENERBIT</th>
                         <th>ACTION</th>
                     </thead>
-                    <tbody width="100%" cellspacing="10">
+                    <tbody width="100%">
                         <?php
                         $id = 1;
                         foreach ($books as $book):
                             ?>
-                        <tr cellspacing="10">
+                        <tr>
                             <td>
                                 <?= $id ?>
                             </td>
@@ -86,7 +86,11 @@ main {
                                 <img src="Temp/<?= $book['image'] ?>" alt="Thumbnail" height="70">
                             </td>
                             <td class="limit">
-                                <a href="<?= $book['link'] ?>"><?= $book['judul_buku'] ?></a>
+                                <a href="<?= $book['link'] ?>">
+                                    <p>
+                                        <?= $book['judul_buku'] ?>
+                                    </p>
+                                </a>
                             </td>
                             <td>
                                 <?= $book['kategori'] ?>

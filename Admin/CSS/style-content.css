@@ -123,6 +123,7 @@ main .content-wrapper .content .download {
 }
 .content-wrapper .content .card-wrapper .isi-data table tbody tr td.limit {
   width: 16%;
+  overflow-wrap: anywhere;
   text-align: left;
 }
 .content-wrapper

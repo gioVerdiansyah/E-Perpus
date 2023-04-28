@@ -76,7 +76,14 @@ if ($key === hash("sha512", $row["username"])) {
     <main>
         <div class="content-wrapper">
             <header class="heading">
-                <h1 id="darkmode" class="light"><i class="fa-solid fa-moon"></i></h1>
+                <div class="action">
+                    <button id="humberger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <button id="darkmode" class="light"><i class="fa-solid fa-moon"></i></button>
+                </div>
                 <div class="profile">
                     <div class="text">
                         <h2 class="name">

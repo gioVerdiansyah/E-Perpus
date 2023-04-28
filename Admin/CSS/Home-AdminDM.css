@@ -6,6 +6,7 @@
   --light: rgb(68, 70, 84);
   --white: #fff;
 }
+
 body {
   background-color: var(--grey);
   color: white;
@@ -91,8 +92,8 @@ main
   border: 1px solid #7b7b7b;
 }
 main .content-wrapper .content .card-wrapper table thead tr th {
-  background-color: var(--light);
-  color: #e2e2e2;
+  background-color: var(--light) !important;
+  color: #e2e2e2 !important;
 }
 main
   .content-wrapper
@@ -117,11 +118,11 @@ main
   border: 1px solid var(--white);
 }
 main .content-wrapper .content .card-wrapper table tbody tr:nth-child(even) {
-  background-color: rgba(197, 197, 197, 0.678);
+  background-color: var(--light) !important;
 }
 main .content-wrapper .content .card-wrapper .description .pagination {
-  background-color: var(--light);
+  background-color: var(--light) !important;
 }
 main .content-wrapper .content .card-wrapper .description .pagination button {
-  color: var(--white);
+  color: var(--white) !important;
 }

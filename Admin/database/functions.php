@@ -45,7 +45,7 @@ function insert($data)
     }
 
     global $db;
-    $query = "INSERT INTO buku VALUES ('', '$judul_buku','$kategori','$penulis','$penerbit','$image','$tahun_terbit','$isbn','$jumlah_halaman','$sinopsis', '$link')";
+    $query = "INSERT INTO buku VALUES ('', '$judul_buku','$kategori','$penulis','$penerbit','$image','$tahun_terbit','$isbn','$jumlah_halaman', '$link', '$sinopsis')";
     mysqli_query($db, $query);
 
     return mysqli_affected_rows($db);
@@ -116,7 +116,7 @@ function updt($data)
     }
 
     global $db;
-    $query = "UPDATE buku SET judul_buku = '$judul_buku', kategori = '$kategori', penulis = '$penulis', penerbit = '$penerbit', tahun_terbit = '$tahun_terbit', isbn = '$isbn', jumlah_halaman = '$jumlah_halaman', sinopsis = '$sinopsis', link = '$link' WHERE id = $id";
+    $query = "UPDATE buku SET judul_buku = '$judul_buku', kategori = '$kategori', penulis = '$penulis', penerbit = '$penerbit', tahun_terbit = '$tahun_terbit', isbn = '$isbn', jumlah_halaman = '$jumlah_halaman', link = '$link', sinopsis = '$sinopsis' WHERE id = $id";
     mysqli_query($db, $query);
 
     return mysqli_affected_rows($db);

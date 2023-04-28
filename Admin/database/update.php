@@ -23,26 +23,32 @@ if (isset($_POST["submit"])) {
 
 
 <form action="" method="post" enctype="multipart/form-data">
+    <style>
+    ul li input {
+        width: 30%;
+    }
+    </style>
     <ul style="list-style-type:none;">
         <input type="hidden" name="id" value="<?= $books['id'] ?>">
         <input type="hidden" name="oldImage" value="<?= $books['image'] ?>">
         <li>
             <label for="judul_buku">Judul Buku</label><br>
-            <input type="text" name="judul_buku" id="judul_buku" required value="<?= $books['judul_buku'] ?>">
+            <input type="text" name="judul_buku" id="judul_buku" maxlength="144" required
+                value="<?= $books['judul_buku'] ?>">
         </li>
         <li>
             <label for="kategori">Kategori</label><br>
-            <input type="text" name="kategori" id="kategori" required value="<?= $books['kategori'] ?>">
+            <input type="text" name="kategori" id="kategori" maxlength="144" required value="<?= $books['kategori'] ?>">
         </li>
 
         <li>
             <label for="penulis">Penulis</label><br>
-            <input type="text" name="penulis" id="penulis" required value="<?= $books["penulis"] ?>">
+            <input type="text" name="penulis" id="penulis" maxlength="144" required value="<?= $books["penulis"] ?>">
         </li>
 
         <li>
             <label for="penerbit">Penerbit</label><br>
-            <input type="text" name="penerbit" id="penerbit" required value="<?= $books["penerbit"] ?>">
+            <input type="text" name="penerbit" id="penerbit" maxlength="144" required value="<?= $books["penerbit"] ?>">
         </li>
         <li>
             <label for="tahun_terbit">Tahun Terbit</label><br>
@@ -50,7 +56,7 @@ if (isset($_POST["submit"])) {
         </li>
         <li>
             <label for="isbn">ISBN</label><br>
-            <input type="text" name="isbn" id="isbn" required value="<?= $books["isbn"] ?>">
+            <input type="text" name="isbn" id="isbn" maxlength="144" required value="<?= $books["isbn"] ?>">
         </li>
         <li>
             <label for="jumlah_halaman">Jumlah Halaman</label><br>

@@ -18,30 +18,30 @@ if (isset($_POST['submit'])) {
 
 <form action="" method="post" enctype="multipart/form-data">
     <style>
-    ul li input {
-        width: 30%;
-    }
+        ul li input {
+            width: 30%;
+        }
     </style>
     <ul style="list-style-type:none;">
 
         <li>
             <label for="judul_buku">Judul Buku</label><br>
-            <input type="text" name="judul_buku" id="judul_buku" required>
+            <input type="text" name="judul_buku" id="judul_buku" maxlength="144" required>
         </li>
 
         <li>
             <label for="kategori">Kategori</label><br>
-            <input type="text" name="kategori" id="kategori" required>
+            <input type="text" name="kategori" id="kategori" maxlength="144" required>
         </li>
 
         <li>
             <label for="penulis">Penulis</label><br>
-            <input type="text" name="penulis" id="penulis" required>
+            <input type="text" name="penulis" id="penulis" maxlength="144" required>
         </li>
 
         <li>
             <label for="penerbit">Penerbit</label><br>
-            <input type="text" name="penerbit" id="penerbit" required>
+            <input type="text" name="penerbit" id="penerbit" maxlength="144" required>
         </li>
         <li>
             <label for="tahun_terbit">Tahun Terbit</label><br>
@@ -49,7 +49,7 @@ if (isset($_POST['submit'])) {
         </li>
         <li>
             <label for="isbn">ISBN</label><br>
-            <input type="text" step="-any" name="isbn" id="isbn" required>
+            <input type="text" step="-any" name="isbn" id="isbn" maxlength="144" required>
         </li>
         <li>
             <label for="jumlah_halaman">Jumlah Halaman</label><br>

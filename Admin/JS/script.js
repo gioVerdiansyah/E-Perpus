@@ -23,6 +23,26 @@ $("main .content-wrapper .heading .profile").mouseenter(function() {
   });
   
 
+  $(document).ready(function() {
+    let cliked = false;
+    $(".content-wrapper .heading .action button#humberger").click(function (e) { 
+        e.preventDefault();
+        if(!cliked){
+            $(".content-wrapper .heading .action button span:first-child").css({'transform-origin': '0 0','transform': 'rotate(45deg) translate(1px, -1px)'});
+            $(".content-wrapper .heading .action button span:last-child").css({'transform-origin': '0 100%','transform': 'rotate(-45deg) translate(1px, 1px)'});
+            $(".content-wrapper .heading .action button span:nth-child(2)").css({'opacity': 0,'transform': 'scale(0)'});
+            $(".side-bar").slideUp(800);
+            cliked = true;
+        }else{
+            $(".content-wrapper .heading .action button span:first-child").css({'transform-origin': '0 0','transform': 'rotate(0deg) translate(0px, 0px)'});
+            $(".content-wrapper .heading .action button span:last-child").css({'transform-origin': '0 0','transform': 'rotate(0deg) translate(0px, 0px)'});
+            $(".content-wrapper .heading .action button span:nth-child(2)").css({'opacity': 1,'transform': 'scale(1)'});
+            $(".side-bar").slideDown(1000);
+            cliked = false;
+        }
+    });
+  });
+
 // AJAX
 $(document).ready(function () {
     $(".content").load('component/Home-Admin.php');
