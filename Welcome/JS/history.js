@@ -12,9 +12,14 @@ function date() {
     const day = date.getDate();
     const hours = date.getHours();
     const minutes = date.getMinutes();
+
+    let hari_ini = new Date(date);
+    hari_ini.setDate(date.getDate());
+
     let spcl = {
         normal: hours + ":" + minutes + "<br>" + day + "/" + month + "/" + year,
-        khusus: hours + ":" + minutes + "/" + day + "/" + month + "/" + year
+        khusus: hours + ":" + minutes + "/" + day + "/" + month + "/" + year,
+        feedback: hari_ini.getDate()
     }
     return spcl;
   }

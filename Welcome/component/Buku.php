@@ -97,6 +97,7 @@ $buku = mysqli_query($db, "SELECT * FROM buku ORDER BY id  ASC LIMIT $dataPerHal
                                 <a href="<?= $books['link'] ?>" id="read-book"><button onclick="
                                     let buku = '<?= $books['judul_buku'] ?>';
                                     let val = {buku: buku,value: date().khusus};putHistory(val, 2);
+                                    
                                 ">Baca Buku</button></a>
                                 <button onclick="
                                 $('.popup').load('component/result/fraction_group.php?bukid=<?= $books['id'] ?>');

@@ -20,4 +20,5 @@ $(document).ready(function () {
         e.preventDefault();
         onClick(this, "component/History.htm");
     });
+    
 });
