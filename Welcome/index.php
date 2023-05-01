@@ -1,3 +1,26 @@
+<?php
+session_name("SESSILGN");
+session_start();
+if (!isset($_SESSION["login-user"]) || !isset($_COOKIE["UUsSRlGnEQthORoe"]) || !isset($_COOKIE["UDsSRlGnEQthORue"])) {
+  header("Location: ../index.php");
+  exit;
+}
+
+
+$id = $_COOKIE["UUsSRlGnEQthORoe"];
+$key = $_COOKIE["UDsSRlGnEQthORue"];
+
+// cek username berdasarkan id
+$result = mysqli_query(mysqli_connect("localhost", "root", "", "perpus"), "SELECT * FROM loginuser WHERE id='$id'");
+$row = mysqli_fetch_assoc($result); //ambil
+$username = '';
+
+// cek COOKIE dan username
+if ($key === hash("sha512", $row["username"])) {
+  $username = $row["username"];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,6 +30,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Welcome User~</title>
   <script src="https://kit.fontawesome.com/981acb16d7.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
   <link rel="stylesheet" href="CSS/User/index.css" />
   <link rel="stylesheet" id="dm" />
   <script src="../Admin/JS/jquery-3.6.3.min.js"></script>
@@ -27,10 +52,17 @@
       </li>
       <li>
         <div>
-          <h2>Username</h2>
+          <h2>
+            <?= ucfirst($username) ?>
+          </h2>
           <p>Anggota</p>
         </div>
-        <img src="../.temp/default.jpg" alt="" />
+        <img src="../.temp/<?= $row['gambar'] ?>" alt="" />
+        <div class="dropdown-logout">
+          <a href="../logout-user.php" onclick="return confirm('Sure?');"><i class="fi fi-rr-sign-out-alt"></i>
+            Logout</a>
+      </li>
+      </div>
       </li>
     </ul>
   </nav>

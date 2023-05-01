@@ -24,16 +24,16 @@ if (isset($_POST["submit"])) {
 
 <form action="" method="post" enctype="multipart/form-data">
     <style>
-    ul li input {
-        width: 30%;
-    }
+        ul li input {
+            width: 30%;
+        }
     </style>
     <ul style="list-style-type:none;">
         <input type="hidden" name="id" value="<?= $books['id'] ?>">
         <input type="hidden" name="oldImage" value="<?= $books['image'] ?>">
         <li>
             <label for="judul_buku">Judul Buku</label><br>
-            <input type="text" name="judul_buku" id="judul_buku" maxlength="144" required
+            <input type="text" name="judul_buku" id="judul_buku" maxlength="74" required
                 value="<?= $books['judul_buku'] ?>">
         </li>
         <li>
@@ -71,7 +71,7 @@ if (isset($_POST["submit"])) {
             <label for="sinopsis">Sinopsis Buku</label><br>
             <textarea name="sinopsis" id="sinopsis" cols="70" rows="10"></textarea>
             <script>
-            document.querySelector("textarea").value = "<?= $books["sinopsis"] ?>";
+                document.querySelector("textarea").value = "<?= $books["sinopsis"] ?>";
             </script>
         </li>
         <li>

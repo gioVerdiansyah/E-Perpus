@@ -70,3 +70,5 @@ window.addEventListener('beforeunload', function(event) {
     }
     localStorage.removeItem(CACHE_KEY + "(visited)");
   });
+
+

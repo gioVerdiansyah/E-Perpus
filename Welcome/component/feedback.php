@@ -47,12 +47,13 @@
                 required></textarea>
         </li>
         <li class="button">
-            <button type="submit" name="submit">Send</button>
-            <button type="reset">Reset</button>
+            <button type="submit" name="submit" id="submit">Send</button>
+            <button type="reset" id="reset">Reset</button>
         </li>
     </ul>
 </form>
 <script>
+$("#loading").hide();
 try {
     let hari_ini = new Date();
     let getDate = new Date(hari_ini);
@@ -79,6 +80,8 @@ try {
 
     form.addEventListener('submit', e => {
         e.preventDefault();
+        $("#submit").hide();
+        $("#reset").hide();
         $("#alert").hide();
         $("#loading").html("<img src='Assets/loading.gif' height='50'>Loading...");
 
@@ -89,8 +92,10 @@ try {
 
         if (hasSentAMessage.alredy > 2) {
             if (JSON.parse(localStorage.getItem("hasSentAMessage")).time !== hariIni) {
-                value.alredy = 0;
-                value.time = hariIni;
+                localStorage.setItem("hasSentAMessage", JSON.stringify({
+                    alredy: 0,
+                    time: hariIni
+                }))
             } else {
                 $("#alert").hide();
                 $("form ul .button").html(
@@ -107,7 +112,7 @@ try {
             } else {
                 value.time = hariIni;
             }
-        } else if (hasSentAMessage.alredy <= 3) {
+        } else if (hasSentAMessage.alredy < 4) {
             hasSentAMessage.alredy++;
         } else {
             hasSentAMessage.alredy = hasSentAMessage.alredy;
@@ -123,6 +128,8 @@ try {
                     body: new FormData(form)
                 })
                 .then(response => {
+                    $("#submit").fadeIn();
+                    $("#reset").fadeIn();
                     $("#loading").fadeOut(500)
                     localStorage.setItem("hasSentAMessage", JSON.stringify(value))
                     if (hasSentAMessage.alredy <= 3 || JSON.parse(localStorage.getItem("hasSentAMessage"))

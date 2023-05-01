@@ -75,6 +75,7 @@ main .data-wrapper .data-indicator .data-search input {
   width: 70%;
   text-align: left;
 }
+
 .data-wrapper .isi-data .data table tbody tr td#detail button {
   width: max-content;
   color: white;

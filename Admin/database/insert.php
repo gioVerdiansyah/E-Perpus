@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
 
         <li>
             <label for="judul_buku">Judul Buku</label><br>
-            <input type="text" name="judul_buku" id="judul_buku" maxlength="144" required>
+            <input type="text" name="judul_buku" id="judul_buku" maxlength="64" required>
         </li>
 
         <li>

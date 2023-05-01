@@ -1,4 +1,5 @@
 <?php
+session_name("SESSILGN");
 session_start();
 
 $_SESSION = []; //menimpa array agar session benar-benar kosong
@@ -8,12 +9,12 @@ session_destroy();
 
 
 // Hapus COOKIE
-setcookie("UUsSRlGn=thORoe", "", time() - 1);
-setcookie("UDsSRlGn=thORue", "", time() - 1);
+setcookie("UUsSRlGnEQthORoe", "", time() - 1);
+setcookie("UDsSRlGnEQthORue", "", time() - 1);
 // "" ini set COOKIE menjadi kosong saat di tekan logout, dan time minus itu artinya waktunya mundur
 
 
 // paksa ke halaman login
-header("Location: login-user.php");
+header("Location: index.php");
 exit;
 ?>

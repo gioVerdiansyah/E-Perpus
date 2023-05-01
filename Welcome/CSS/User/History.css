@@ -52,6 +52,9 @@ main {
   flex-direction: row;
   margin-top: 5px;
 }
+.isi-data .data #membaca div {
+  overflow-wrap: anywhere;
+}
 .isi-data .data #masuk,
 .isi-data .data #keluar {
   width: 30%;
@@ -69,6 +72,7 @@ main {
   color: rgb(43, 43, 43);
   border-bottom: 2px solid;
   padding: 10px 5px;
+  margin: 0;
   text-align: center;
   font-size: large;
   font-family: Arial, Helvetica, sans-serif;
@@ -83,6 +87,7 @@ main {
 .isi-data .data #membaca div p {
   text-align: center;
   padding: 10px;
+  margin: 0;
 }
 .isi-data .data #masuk h2,
 .isi-data .data #keluar h2,
