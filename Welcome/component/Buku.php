@@ -8,7 +8,32 @@ $jumlahData = count(query("SELECT * FROM buku"));
 $jumlahHalaman = ceil($jumlahData / $dataPerHalaman);
 $halamanAktif = (isset($_GET['page'])) ? $_GET['page'] : 1;
 
+$id = $_COOKIE["UUsSRlGnEQthORoe"];
+$key = $_COOKIE["UDsSRlGnEQthORue"];
+
+// cek username berdasarkan id
+$result = mysqli_query(mysqli_connect("localhost", "root", "", "perpus"), "SELECT * FROM loginuser WHERE id='$id'");
+$row = mysqli_fetch_assoc($result); //ambil
+$username = '';
+$rowGambar = $row['gambar'];
+
+// cek COOKIE dan username
+if ($key === hash("sha512", $row["username"])) {
+    $username = $row["username"];
+}
+
+
 $buku = mysqli_query($db, "SELECT * FROM buku ORDER BY id  ASC LIMIT $dataPerHalaman");
+date_default_timezone_set('Asia/Jakarta');
+
+if (isset($_POST['userMembaca'])) {
+    $bukunya = $_POST['bukunya'];
+    $kategori = $_POST['kategori'];
+    $date = date("H:i/d/m/Y");
+
+    $dataPembaca = "INSERT INTO pembaca VALUES('', '$rowGambar', '$username', '$bukunya', '$kategori', '$date')";
+    mysqli_query($db, $dataPembaca);
+}
 
 ?>
 
@@ -94,11 +119,18 @@ $buku = mysqli_query($db, "SELECT * FROM buku ORDER BY id  ASC LIMIT $dataPerHal
                                 </p>
                             </td>
                             <td id="detail">
-                                <a href="<?= $books['link'] ?>" id="read-book"><button onclick="
+                                <a href="<?= $books['link'] ?>" id="read-book">
+                                    <button onclick="
                                     let buku = '<?= $books['judul_buku'] ?>';
-                                    let val = {buku: buku,value: date().khusus};putHistory(val, 2);
-                                    
-                                ">Baca Buku</button></a>
+                                    let val = {buku: buku,value: date().khusus};
+                                    putHistory(val, 2);
+                                    $.post('component/Buku.php', { 
+                                        userMembaca: true,
+                                        bukunya: '<?= $books['judul_buku'] ?>',
+                                        kategori: '<?= $books['kategori'] ?>'
+                                     });
+                                " id="baca-buku">Baca Buku</button>
+                                </a>
                                 <button onclick="
                                 $('.popup').load('component/result/fraction_group.php?bukid=<?= $books['id'] ?>');
                                 $('.popup').removeAttr('hidden')
@@ -110,6 +142,7 @@ $buku = mysqli_query($db, "SELECT * FROM buku ORDER BY id  ASC LIMIT $dataPerHal
                 </tbody>
             </table>
         </div>
+
         <div class="description">
             <p>Showing
                 <?= $num -= 1 ?> of 10 entries

@@ -67,14 +67,9 @@ $(document).ready(function () {
         onReady(this, 'component/Master-Buku.php');
     });
 
-    $("#peminjaman").click(function (e) { 
-        e.preventDefault();
-        onReady(this, 'component/Data-Peminjaman.php');
-    });
-
     $("#laporan").click(function (e) { 
         e.preventDefault();
-        onReady(this, 'component/Data-Laporan.php');
+        onReady(this, 'component/Data-Pembaca.php');
     });
 
 });

@@ -6,8 +6,9 @@ if (!isset($_SESSION["login"]) && !isset($_COOKIE["UIuDSteKukki"]) && !isset($_C
 }
 
 $id = $_GET["id"];
+$table = $_GET["table"];
 
-if (del($id) > 0) {
+if (del($id, $table) > 0) {
     echo "
     <script>
         alert('Data berhasil di hapus!');

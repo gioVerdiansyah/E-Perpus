@@ -63,10 +63,6 @@ if ($key === hash("sha512", $row["username"])) {
                     </li>
                 </ul>
             </li>
-            <li id="peminjaman">
-                <h2><i class="fa-solid fa-book"></i> Peminjaman</h2>
-            </li>
-            <!-- <li><h2><i class="fi fi-rr-list-check"></i> Persetujuan</h2></li> -->
             <li id="laporan">
                 <h2><i class="fa-solid fa-chart-simple"></i> Laporan</h2>
             </li>

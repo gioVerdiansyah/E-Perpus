@@ -7,7 +7,7 @@
 body {
   background-color: rgb(248, 248, 255);
   position: relative;
-  height: 100vh;
+  height: max-content;
 }
 
 nav {

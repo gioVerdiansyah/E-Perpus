@@ -124,10 +124,10 @@ function updt($data)
 
 
 // delete
-function del($id)
+function del($id, $table)
 {
     global $db;
-    mysqli_query($db, "DELETE FROM buku WHERE id = $id");
+    mysqli_query($db, "DELETE FROM $table WHERE id = $id");
 
     return mysqli_affected_rows($db);
 }
