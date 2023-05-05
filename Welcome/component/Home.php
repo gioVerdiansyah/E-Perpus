@@ -1,3 +1,10 @@
+<?php
+if (!isset($_SESSION["login-user"]) && !isset($_COOKIE["UUsSRlGnEQthORoe"]) && !isset($_COOKIE["UDsSRlGnEQthORue"])) {
+    header("Location: ../../index.php");
+    exit;
+}
+?>
+
 <link rel="stylesheet" href="CSS/User/Home.css">
 
 <div class="list-creator">

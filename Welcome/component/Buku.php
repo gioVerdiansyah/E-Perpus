@@ -3,6 +3,11 @@ session_name("SESSILGN");
 session_start();
 require "../../Admin/database/functions.php";
 
+if (!isset($_SESSION["login-user"]) && !isset($_COOKIE["UUsSRlGnEQthORoe"]) && !isset($_COOKIE["UDsSRlGnEQthORue"])) {
+    header("Location: ../../index.php");
+    exit;
+}
+
 $dataPerHalaman = (isset($_GET['lim'])) ? $_GET['lim'] : 10;
 $jumlahData = count(query("SELECT * FROM buku"));
 $jumlahHalaman = ceil($jumlahData / $dataPerHalaman);

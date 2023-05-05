@@ -1,16 +1,20 @@
+<?php
+if (!isset($_SESSION["login-user"]) && !isset($_COOKIE["UUsSRlGnEQthORoe"]) && !isset($_COOKIE["UDsSRlGnEQthORue"])) {
+  header("Location: ../../index.php");
+  exit;
+}
+?>
+
 <link rel="stylesheet" href="CSS/User/History.css" />
 
 <div class="isi-data" id="isi-data">
   <div class="data-indicator">
-    <button
-      id="button"
-      onclick="
+    <button id="button" onclick="
     localStorage.clear();
   $('main').load('component/History.htm');
   $('*').removeClass('on');
   $('#riwayat').addClass('on');
-  "
-    >
+  ">
       Hapus Riwayat <i class="fa-solid fa-trash"></i>
     </button>
   </div>
@@ -25,7 +29,11 @@
     if (typeof Storage !== "undefined") {
       let historyData = JSON.parse(
         localStorage.getItem("HISTORY_E-PERPUS_MEJAYAN")
-      ) || [[], [], []];
+      ) || [
+          [],
+          [],
+          []
+        ];
 
       let result = {
         enter: historyData[0],
@@ -35,7 +43,11 @@
 
       return result;
     } else {
-      return [[], [], []];
+      return [
+        [],
+        [],
+        []
+      ];
     }
   }
 

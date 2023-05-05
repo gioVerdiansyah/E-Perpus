@@ -35,7 +35,7 @@ $(document).ready(function () {
 
     $("#riwayat").click(function (e) { 
         e.preventDefault();
-        onClick(this, "component/History.htm");
+        onClick(this, "component/History.php");
     });
     
 });

@@ -1,3 +1,10 @@
+<?php
+if (!isset($_SESSION["login-user"]) && !isset($_COOKIE["UUsSRlGnEQthORoe"]) && !isset($_COOKIE["UDsSRlGnEQthORue"])) {
+    header("Location: ../../index.php");
+    exit;
+}
+?>
+
 <link rel="stylesheet" href="CSS/User/Feedback.css">
 <div class="heading">
     <h1>Hai User bagaimana pendapat mu?</h1>
@@ -27,7 +34,7 @@
     <h1>Pesan telah terkirim</h1>
     <p>Terima kasih atas waktu dan perhatiannya dalam memberikan feedback pada aplikasi kami.</p>
     <button onclick="
-     $('form')[0].reset();
+     document.querySelector('form').reset();
       $('#alert').fadeOut(800);
       ">
         <i class="fa-solid fa-xmark"></i>
@@ -48,99 +55,99 @@
         </li>
         <li class="button">
             <button type="submit" name="submit" id="submit">Send</button>
-            <button type="reset" id="reset">Reset</button>
+            <button type="reset" id="hapus">Reset</button>
         </li>
     </ul>
 </form>
 <script>
-$("#loading").hide();
-try {
-    let hari_ini = new Date();
-    let getDate = new Date(hari_ini);
-    getDate.setDate(hari_ini.getDate());
-    let hariIni = getDate.getDate();
+    $("#loading").hide();
+    try {
+        let hari_ini = new Date();
+        let getDate = new Date(hari_ini);
+        getDate.setDate(hari_ini.getDate());
+        let hariIni = getDate.getDate();
 
-
-
-    if (localStorage.getItem("hasSentAMessage") === null) {
-        localStorage.setItem("hasSentAMessage", JSON.stringify({
-            alredy: 0,
-            time: 0
-        }));
-    }
-
-    let hasSentAMessage = JSON.parse(localStorage.getItem("hasSentAMessage"));
-
-
-    // system send feedback
-    const scriptURL =
-        'https://script.google.com/macros/s/AKfycbzzWsNyosh0WSGYGEdi_V0TsnL6l8QFVbETbl3F8m2kqCdszSs4FCI6JcWPkrQJj9qC/exec'
-    const form = document.forms['e_perpus_feedback']
-
-
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        $("#submit").hide();
-        $("#reset").hide();
-        $("#alert").hide();
-        $("#loading").html("<img src='Assets/loading.gif' height='50'>Loading...");
-
-        let value = {
-            alredy: hasSentAMessage.alredy,
-            time: hariIni
-        }
-
-        if (hasSentAMessage.alredy > 2) {
-            if (JSON.parse(localStorage.getItem("hasSentAMessage")).time !== hariIni) {
-                localStorage.setItem("hasSentAMessage", JSON.stringify({
-                    alredy: 0,
-                    time: hariIni
-                }))
-            } else {
-                $("#alert").hide();
-                $("form ul .button").html(
-                    "<p><strong>Ini adalah batas pengiriman!</strong> <br> Terimakasih sudah perhatian kepada kami :) <br> jika anda menemukan bug bisa kirim email langsung kepada <a href='mailto:e01010010or@gmail.com'>kami.</a></p>"
-                );
-            }
-        }
 
 
         if (localStorage.getItem("hasSentAMessage") === null) {
-            hasSentAMessage.alredy = 1;
-            if (hasSentAMessage.time !== 0) {
-                value.time = hasSentAMessage.time;
-            } else {
-                value.time = hariIni;
-            }
-        } else if (hasSentAMessage.alredy < 4) {
-            hasSentAMessage.alredy++;
-        } else {
-            hasSentAMessage.alredy = hasSentAMessage.alredy;
+            localStorage.setItem("hasSentAMessage", JSON.stringify({
+                alredy: 0,
+                time: 0
+            }));
         }
 
+        let hasSentAMessage = JSON.parse(localStorage.getItem("hasSentAMessage"));
 
 
-        if (hasSentAMessage.alredy <= 3 || JSON.parse(localStorage.getItem("hasSentAMessage")).time !==
-            hariIni) {
-            $("#loading").show();
-            fetch(scriptURL, {
+        // system send feedback
+        const scriptURL =
+            'https://script.google.com/macros/s/AKfycbzzWsNyosh0WSGYGEdi_V0TsnL6l8QFVbETbl3F8m2kqCdszSs4FCI6JcWPkrQJj9qC/exec'
+        const form = document.forms['e_perpus_feedback']
+
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            $("#submit").hide();
+            $("#hapus").hide();
+            $("#alert").hide();
+            $("#loading").html("<img src='Assets/loading.gif' height='50'>Loading...");
+
+            let value = {
+                alredy: hasSentAMessage.alredy,
+                time: hariIni
+            }
+
+            if (hasSentAMessage.alredy > 2) {
+                if (JSON.parse(localStorage.getItem("hasSentAMessage")).time !== hariIni) {
+                    localStorage.setItem("hasSentAMessage", JSON.stringify({
+                        alredy: 0,
+                        time: hariIni
+                    }))
+                } else {
+                    $("#alert").hide();
+                    $("form ul .button").html(
+                        "<p><strong>Ini adalah batas pengiriman!</strong> <br> Terimakasih sudah perhatian kepada kami :) <br> jika anda menemukan bug bisa kirim email langsung kepada <a href='mailto:e01010010or@gmail.com'>kami.</a></p>"
+                    );
+                }
+            }
+
+
+            if (localStorage.getItem("hasSentAMessage") === null) {
+                hasSentAMessage.alredy = 1;
+                if (hasSentAMessage.time !== 0) {
+                    value.time = hasSentAMessage.time;
+                } else {
+                    value.time = hariIni;
+                }
+            } else if (hasSentAMessage.alredy < 4) {
+                hasSentAMessage.alredy++;
+            } else {
+                hasSentAMessage.alredy = hasSentAMessage.alredy;
+            }
+
+
+
+            if (hasSentAMessage.alredy <= 3 || JSON.parse(localStorage.getItem("hasSentAMessage")).time !==
+                hariIni) {
+                $("#loading").show();
+                fetch(scriptURL, {
                     method: 'POST',
                     body: new FormData(form)
                 })
-                .then(response => {
-                    $("#submit").fadeIn();
-                    $("#reset").fadeIn();
-                    $("#loading").fadeOut(500)
-                    localStorage.setItem("hasSentAMessage", JSON.stringify(value))
-                    if (hasSentAMessage.alredy <= 3 || JSON.parse(localStorage.getItem("hasSentAMessage"))
-                        .time !== hariIni) {
-                        $("#alert").fadeIn(800);
-                    } else {
-                        $("#alert").hide();
-                    }
-                })
-                .catch(error => console.error('Error!', error.message))
-        }
-    })
-} catch (error) {}
+                    .then(response => {
+                        $("#submit").fadeIn();
+                        $("#hapus").fadeIn();
+                        $("#loading").fadeOut(500)
+                        localStorage.setItem("hasSentAMessage", JSON.stringify(value))
+                        if (hasSentAMessage.alredy <= 3 || JSON.parse(localStorage.getItem("hasSentAMessage"))
+                            .time !== hariIni) {
+                            $("#alert").fadeIn(800);
+                        } else {
+                            $("#alert").hide();
+                        }
+                    })
+                    .catch(error => console.error('Error!', error.message))
+            }
+        })
+    } catch (error) { }
 </script>
