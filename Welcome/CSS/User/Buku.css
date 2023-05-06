@@ -26,6 +26,7 @@ main .data-wrapper .data-indicator .data-entries select#selection {
   margin: 0 5px;
   padding: 3px;
   border-radius: 5px;
+  outline: none;
 }
 main .data-wrapper .data-indicator .data-search {
   display: flex;
@@ -39,6 +40,7 @@ main .data-wrapper .data-indicator .data-search label {
 main .data-wrapper .data-indicator .data-search input {
   width: 90%;
   padding: 3px 2px;
+  outline: none;
 }
 .data-wrapper .isi-data .data table {
   border-collapse: collapse;
@@ -94,6 +96,12 @@ main .data-wrapper .data-indicator .data-search input {
   margin-right: 5px;
   transform: rotate(90deg);
 }
+.data-wrapper .isi-data .description {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+}
 .data-wrapper .description .pagination {
   width: max-content;
   margin-left: auto;
@@ -127,4 +135,54 @@ main .data-wrapper .data-indicator .data-search input {
 }
 .data-wrapper .isi-data .description .pagination button i.fa-angle-right {
   transform: translate(-3px, 1px);
+}
+
+@media (max-width: 660px) {
+  main .title h2 {
+    font-size: larger;
+  }
+  main .title p {
+    font-size: small;
+  }
+
+  main .data-wrapper .data-indicator .data-entries select {
+    padding: 0 !important;
+  }
+  main .data-wrapper .data-indicator .data-search {
+    justify-content: flex-end;
+  }
+  main .data-wrapper .data-indicator .data-search input {
+    width: 50% !important;
+    border: none;
+    border-bottom: 1px solid grey;
+  }
+  main .data-wrapper .data-indicator .data-entries p,
+  main .data-wrapper .data-indicator .data-search label,
+  table thead th,
+  .data-wrapper .description p {
+    font-size: small;
+  }
+
+  table thead th:nth-child(3),
+  table thead th:nth-child(4),
+  table thead th:nth-child(5),
+  table thead th:nth-child(6),
+  table tbody td:nth-child(3),
+  table tbody td:nth-child(4),
+  table tbody td:nth-child(5),
+  table tbody td:nth-child(6) {
+    display: none !important;
+  }
+
+  .popup #pop-up .content {
+    width: 100% !important;
+  }
+}
+@media (max-width: 550px) {
+  .popup #pop-up .content .title button {
+    position: inherit !important;
+    box-shadow: none !important;
+    right: 0 !important;
+    top: 0 !important;
+  }
 }

@@ -131,3 +131,30 @@ main p a {
 #redirect div button:hover {
   background-color: rgba(0, 0, 0, 0.15);
 }
+
+@media (max-width: 660px) {
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  .image {
+    display: none;
+  }
+  main {
+    width: 100%;
+    padding: 10px 0;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
+  }
+  main form ul li {
+    width: 75%;
+  }
+  main h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  main p {
+    font-size: small;
+  }
+}

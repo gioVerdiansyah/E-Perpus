@@ -50,8 +50,7 @@ if (!isset($_SESSION["login-user"]) && !isset($_COOKIE["UUsSRlGnEQthORoe"]) && !
         </li>
         <li>
             <label for="message">Pesan:</label><br>
-            <textarea name="message" id="message" cols="50" rows="3" placeholder="Ketik pesan yang ingin di sampaikan"
-                required></textarea>
+            <textarea name="message" id="message" placeholder="Ketik pesan yang ingin di sampaikan" required></textarea>
         </li>
         <li class="button">
             <button type="submit" name="submit" id="submit">Send</button>

@@ -91,41 +91,41 @@ if (isset($_POST['userMembaca'])) {
                     $num = 1;
                     foreach ($buku as $books):
                         ?>
-                        <tr>
-                            <td>
-                                <p>
-                                    <?= $num ?>
-                                </p>
-                            </td>
-                            <td>
-                                <p>
-                                    <img src="../Admin/Temp/<?= $books["image"] ?>"
-                                        alt="image of book: <?= $books['judul_buku'] ?>" height="70" />
-                                </p>
-                            </td>
-                            <td>
-                                <p class="limit">
-                                    <?= $books["judul_buku"] ?>
-                                </p>
-                            </td>
-                            <td>
-                                <p>
-                                    <?= $books["kategori"] ?>
-                                </p>
-                            </td>
-                            <td>
-                                <p class="limit">
-                                    <?= $books["penulis"] ?>
-                                </p>
-                            </td>
-                            <td>
-                                <p class="limit">
-                                    <?= $books["penerbit"] ?>
-                                </p>
-                            </td>
-                            <td id="detail">
-                                <a href="<?= $books['link'] ?>" id="read-book">
-                                    <button onclick="
+                    <tr>
+                        <td>
+                            <p>
+                                <?= $num ?>
+                            </p>
+                        </td>
+                        <td>
+                            <p>
+                                <img src="../Admin/Temp/<?= $books["image"] ?>"
+                                    alt="image of book: <?= $books['judul_buku'] ?>" height="70" />
+                            </p>
+                        </td>
+                        <td>
+                            <p class="limit">
+                                <?= $books["judul_buku"] ?>
+                            </p>
+                        </td>
+                        <td>
+                            <p>
+                                <?= $books["kategori"] ?>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="limit">
+                                <?= $books["penulis"] ?>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="limit">
+                                <?= $books["penerbit"] ?>
+                            </p>
+                        </td>
+                        <td id="detail">
+                            <a href="<?= $books['link'] ?>" id="read-book">
+                                <button onclick="
                                     let buku = '<?= $books['judul_buku'] ?>';
                                     let val = {buku: buku,value: date().khusus};
                                     putHistory(val, 2);
@@ -135,14 +135,14 @@ if (isset($_POST['userMembaca'])) {
                                         kategori: '<?= $books['kategori'] ?>'
                                      });
                                 " id="baca-buku">Baca Buku</button>
-                                </a>
-                                <button onclick="
+                            </a>
+                            <button onclick="
                                 $('.popup').load('component/result/fraction_group.php?bukid=<?= $books['id'] ?>');
                                 $('.popup').removeAttr('hidden')
                                 "><i class="fa-solid fa-chart-simple"></i>Detail</button>
-                            </td>
-                        </tr>
-                        <?php $num++; endforeach;
+                        </td>
+                    </tr>
+                    <?php $num++; endforeach;
                     ?>
                 </tbody>
             </table>
@@ -155,13 +155,13 @@ if (isset($_POST['userMembaca'])) {
             <div class="pagination">
                 <p class="amount-of-data">1</p>
                 <?php if ($halamanAktif < $jumlahHalaman): ?>
-                    <button onclick="
+                <button onclick="
                     $('.isi-data').load(
                         'component/result/index.php?lim=<?= $dataPerHalaman ?>&&page=<?= $halamanAktif + 1 ?>&&key=' + $('#search').val())'
                     )">
-                        Next
-                        <i class="fa-solid fa-angle-right"></i>
-                    </button>
+                    Next
+                    <i class="fa-solid fa-angle-right"></i>
+                </button>
                 <?php endif ?>
             </div>
         </div>

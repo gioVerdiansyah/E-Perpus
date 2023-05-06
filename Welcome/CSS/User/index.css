@@ -14,11 +14,17 @@ nav {
   padding: 5px 15px;
   background-color: white;
   box-shadow: 1px 0px 3px rgba(0, 0, 0, 0.5);
+  margin-bottom: 20px;
 }
 nav ul {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+}
+nav ul li:first-child {
+  display: flex;
+  flex-direction: row;
   align-items: center;
 }
 nav ul li:first-child h1 {
@@ -72,7 +78,7 @@ header {
   width: 90%;
   background-color: white;
   box-shadow: 3px 1px 5px rgba(0, 0, 0, 0.2), -2px -1px 3px rgba(0, 0, 0, 0.2);
-  margin: 20px auto;
+  margin: 0px auto 20px auto;
   padding: 10px;
   border-radius: 3px;
 }
@@ -116,4 +122,77 @@ footer h2 a {
 }
 footer h2 a:hover {
   text-decoration: underline;
+}
+
+nav ul li button {
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  margin: 0 10px;
+  cursor: pointer;
+}
+nav ul li button span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  margin: 5px 0;
+  background-color: grey;
+  transition: all 0.3s;
+}
+@media (max-width: 768px) {
+  nav {
+    padding: 3px;
+  }
+  nav ul li h1#darkmode {
+    font-size: x-large;
+  }
+  nav ul li div h2 {
+    font-size: small !important;
+  }
+  nav ul li div p {
+    font-size: x-small !important;
+  }
+  nav ul li img {
+    width: 35px !important;
+    margin-left: 5px !important;
+  }
+  nav ul li h1.title {
+    text-align: center;
+    font-size: medium;
+  }
+  header {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  header ul {
+    display: block;
+  }
+
+  main {
+    grid-template-columns: 1fr !important;
+  }
+  main .about-E-perpus {
+    margin-top: 20px;
+    margin-left: 0 !important;
+  }
+  main .list-creator img {
+    height: 30% !;
+  }
+  main .about-E-perpus img {
+    width: 80% !important;
+    height: 30%;
+  }
+  main .about-E-perpus ul li.title h1,
+  main .list-creator ul li.title h1 {
+    font-size: large !important;
+  }
+
+  main .about-E-perpus ul li p {
+    width: 90% !important;
+    font-size: medium;
+  }
+
+  footer h2 {
+    font-size: x-small;
+  }
 }

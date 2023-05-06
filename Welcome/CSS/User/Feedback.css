@@ -43,6 +43,15 @@ form {
   justify-content: center;
   margin-top: 10px;
 }
+form ul {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+form ul li:first-child,
+form ul li:nth-child(2) {
+  width: 100%;
+}
 form ul li:first-child {
   margin: 25px 0;
 }
@@ -122,4 +131,30 @@ form ul li .button p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: 460px) {
+  .heading {
+    padding: 5px !important;
+  }
+  .heading h1 {
+    font-size: larger !important;
+  }
+  .heading p.feedback-anda {
+    font-size: 14px !important;
+  }
+  form ul {
+    display: flex;
+    align-items: center;
+    width: 100% !important;
+  }
+  form ul li:first-child,
+  form ul li:nth-child(2) {
+    width: 80% !important;
+  }
+}
+@media (min-width: 768px) {
+  form ul {
+    width: 40%;
+  }
 }
