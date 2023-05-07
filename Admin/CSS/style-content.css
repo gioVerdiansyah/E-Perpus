@@ -6,10 +6,16 @@ main .content-wrapper .content .download {
   width: max-content;
   margin-bottom: 15px;
   transition: all 0.3s;
+  cursor: pointer;
 }
-
-.content-wrapper .content .download h3,
-.content-wrapper .content .download h3 i {
+main .content-wrapper .content .download button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+.content-wrapper .content .download button,
+.content-wrapper .content .download button i {
   display: flex;
   align-items: center;
   color: #ffffff;

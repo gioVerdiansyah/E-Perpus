@@ -11,6 +11,7 @@ $fillIn = query("SELECT * FROM buku WHERE id = $id")[0];
             <h1>Detail Buku</h1>
             <button onclick="
       $('#pop-up').remove();
+      $('body').removeAttr('height')
       ">
                 <i class="fa-solid fa-xmark"></i>
             </button>

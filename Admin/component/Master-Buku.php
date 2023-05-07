@@ -14,14 +14,14 @@ $books = mysqli_query($db, "SELECT * FROM buku ORDER BY id ASC LIMIT $dataPerHal
 ?>
 
 <style>
-    .side-bar {
-        height: 100% !important;
-        box-shadow: none !important;
-    }
+.side-bar {
+    height: 100% !important;
+    box-shadow: none !important;
+}
 
-    main {
-        height: max-content !important;
-    }
+main {
+    height: max-content !important;
+}
 </style>
 
 <link rel="stylesheet" href="CSS/style-content.css">
@@ -78,42 +78,42 @@ $books = mysqli_query($db, "SELECT * FROM buku ORDER BY id ASC LIMIT $dataPerHal
                         $id = 1;
                         foreach ($books as $book):
                             ?>
-                            <tr>
-                                <td>
-                                    <?= $id ?>
-                                </td>
-                                <td>
-                                    <img src="Temp/<?= $book['image'] ?>" alt="Thumbnail" height="70">
-                                </td>
-                                <td class="limit">
-                                    <a href="<?= $book['link'] ?>">
-                                        <p>
-                                            <?= $book['judul_buku'] ?>
-                                        </p>
-                                    </a>
-                                </td>
-                                <td>
-                                    <?= $book['kategori'] ?>
-                                </td>
-                                <td class="limit">
-                                    <?= $book['penulis'] ?>
-                                </td>
-                                <td class="limit">
-                                    <?= $book['penerbit'] ?>
-                                </td>
-                                <td>
-                                    <a href="database/update.php?id=<?= $book['id'] ?>"><i
-                                            class="fa-solid fa-pen-to-square"></i></a>
-                                    <a href="database/delete.php?id=<?= $book['id'] ?>&&table=buku"><i
-                                            class="fa-solid fa-delete-left"></i></a><br>
-                                    <button onclick="
+                        <tr>
+                            <td>
+                                <?= $id ?>
+                            </td>
+                            <td>
+                                <img src="Temp/<?= $book['image'] ?>" alt="Thumbnail" height="70">
+                            </td>
+                            <td class="limit">
+                                <a href="<?= $book['link'] ?>">
+                                    <p>
+                                        <?= $book['judul_buku'] ?>
+                                    </p>
+                                </a>
+                            </td>
+                            <td>
+                                <?= $book['kategori'] ?>
+                            </td>
+                            <td class="limit">
+                                <?= $book['penulis'] ?>
+                            </td>
+                            <td class="limit">
+                                <?= $book['penerbit'] ?>
+                            </td>
+                            <td>
+                                <a href="database/update.php?id=<?= $book['id'] ?>"><i
+                                        class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="database/delete.php?id=<?= $book['id'] ?>&&table=buku"><i
+                                        class="fa-solid fa-delete-left"></i></a><br>
+                                <button onclick="
                                 $('.popup').load('../Welcome/component/result/fraction_group.php?bukid=<?= $book['id'] ?>');
                                 $('.popup').removeAttr('hidden');
                                 "><i class="fa-solid fa-chart-simple"></i>Detail
-                                    </button>
-                                </td>
-                            </tr>
-                            <?php
+                                </button>
+                            </td>
+                        </tr>
+                        <?php
                             $id++;
                         endforeach;
                         ?>
@@ -127,13 +127,13 @@ $books = mysqli_query($db, "SELECT * FROM buku ORDER BY id ASC LIMIT $dataPerHal
                 <div class="pagination">
                     <p class="amount-of-data">1</p>
                     <?php if ($halamanAktif < $jumlahHalaman): ?>
-                        <button onclick="
+                    <button onclick="
                     $('.isi-data').load(
                         'component/result/index.php?lim=<?= $dataPerHalaman ?>&&page=<?= $halamanAktif + 1 ?>&&key=' + $('#search').val())'
                     )">
-                            Next
-                            <i class="fa-solid fa-angle-right"></i>
-                        </button>
+                        Next
+                        <i class="fa-solid fa-angle-right"></i>
+                    </button>
                     <?php endif ?>
                 </div>
             </div>

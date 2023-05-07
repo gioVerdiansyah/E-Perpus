@@ -16,64 +16,70 @@ if (isset($_POST["submit"])) {
         document.location.href = '../index.php';
         </script>";
     } else {
-        echo "Data gagal di Ubah" . "<br>" . mysqli_error($db);
+        echo "Data gagal di Ubah" . "" . mysqli_error($db);
     }
 }
 ?>
 
-
+<link rel="stylesheet" href="../CSS/database.css">
 <form action="" method="post" enctype="multipart/form-data">
-    <style>
-        ul li input {
-            width: 30%;
-        }
-    </style>
     <ul style="list-style-type:none;">
         <input type="hidden" name="id" value="<?= $books['id'] ?>">
         <input type="hidden" name="oldImage" value="<?= $books['image'] ?>">
-        <li>
-            <label for="judul_buku">Judul Buku</label><br>
-            <input type="text" name="judul_buku" id="judul_buku" maxlength="74" required
-                value="<?= $books['judul_buku'] ?>">
-        </li>
-        <li>
-            <label for="kategori">Kategori</label><br>
-            <input type="text" name="kategori" id="kategori" maxlength="144" required value="<?= $books['kategori'] ?>">
-        </li>
+        <div class="first">
+            <div>
+                <li>
+                    <label for="judul_buku">Judul Buku</label>
+                    <input type="text" name="judul_buku" id="judul_buku" maxlength="74" required
+                        value="<?= $books['judul_buku'] ?>">
+                </li>
+                <li>
+                    <label for="kategori">Kategori</label>
+                    <input type="text" name="kategori" id="kategori" maxlength="144" required
+                        value="<?= $books['kategori'] ?>">
+                </li>
 
+                <li>
+                    <label for="penulis">Penulis</label>
+                    <input type="text" name="penulis" id="penulis" maxlength="144" required
+                        value="<?= $books["penulis"] ?>">
+                </li>
+            </div>
+            <div>
+                <li>
+                    <label for="penerbit">Penerbit</label>
+                    <input type="text" name="penerbit" id="penerbit" maxlength="144" required
+                        value="<?= $books["penerbit"] ?>">
+                </li>
+                <li>
+                    <label for="tahun_terbit">Tahun Terbit</label>
+                    <input type="date" name="tahun_terbit" id="tahun_terbit" required
+                        value="<?= $books["tahun_terbit"] ?>">
+                </li>
+                <li>
+                    <label for="isbn">ISBN</label>
+                    <input type="text" name="isbn" id="isbn" maxlength="144" required value="<?= $books["isbn"] ?>">
+                </li>
+            </div>
+        </div>
         <li>
-            <label for="penulis">Penulis</label><br>
-            <input type="text" name="penulis" id="penulis" maxlength="144" required value="<?= $books["penulis"] ?>">
-        </li>
-
-        <li>
-            <label for="penerbit">Penerbit</label><br>
-            <input type="text" name="penerbit" id="penerbit" maxlength="144" required value="<?= $books["penerbit"] ?>">
-        </li>
-        <li>
-            <label for="tahun_terbit">Tahun Terbit</label><br>
-            <input type="date" name="tahun_terbit" id="tahun_terbit" required value="<?= $books["tahun_terbit"] ?>">
-        </li>
-        <li>
-            <label for="isbn">ISBN</label><br>
-            <input type="text" name="isbn" id="isbn" maxlength="144" required value="<?= $books["isbn"] ?>">
-        </li>
-        <li>
-            <label for="jumlah_halaman">Jumlah Halaman</label><br>
-            <input type="number" name="jumlah_halaman" id="jumlah_halaman" required
-                value="<?= $books["jumlah_halaman"] ?>">
-        </li>
-        <li>
-            <label for="link" title="isi 404 jika E-Book tidak ada!">Link Buku</label><br>
-            <input type="text" name="link" id="link" required value="<?= $books['link'] ?>">
-        </li>
-        <li>
-            <label for="sinopsis">Sinopsis Buku</label><br>
-            <textarea name="sinopsis" id="sinopsis" cols="70" rows="10"></textarea>
+            <label for="sinopsis">Sinopsis Buku</label>
+            <textarea name="sinopsis" id="sinopsis" rows="5"></textarea>
             <script>
                 document.querySelector("textarea").value = "<?= $books["sinopsis"] ?>";
             </script>
         </li>
+        <div class="second">
+            <li>
+                <label for="jumlah_halaman">Jumlah Halaman</label>
+                <input type="number" name="jumlah_halaman" id="jumlah_halaman" required
+                    value="<?= $books["jumlah_halaman"] ?>">
+            </li>
+            <li>
+                <label for="link" title="isi 404 jika E-Book tidak ada!">Link Buku</label>
+                <input type="text" name="link" id="link" required value="<?= $books['link'] ?>">
+            </li>
+        </div>
         <li>
             <label for="image">Thumbnail</label><br>
             <img src="../Temp/<?= $books['image'] ?>" id="img" alt="gambar sebelumnya" height="70"><br>

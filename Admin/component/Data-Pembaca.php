@@ -11,7 +11,7 @@ $jumlahData = count(query("SELECT * FROM pembaca"));
 $jumlahHalaman = ceil($jumlahData / $dataPerHalaman);
 $halamanAktif = (isset($_GET['page'])) ? $_GET['page'] : 1;
 
-$read = mysqli_query($db, "SELECT * FROM pembaca ORDER BY id ASC LIMIT 10");
+$read = mysqli_query($db, "SELECT * FROM pembaca ORDER BY id DESC LIMIT 10");
 
 ?>
 <style>
@@ -38,7 +38,9 @@ $read = mysqli_query($db, "SELECT * FROM pembaca ORDER BY id ASC LIMIT 10");
     <h3>Reader</h3>
 </div>
 <div class="download">
-    <h3><i class="fi fi-rr-download"></i> Download Data Peminjaman (PDF)</h3>
+    <button onclick="window.location.href = 'component/result/cetak.php?lim=' + $('#selection').val() +
+            '&&page=<?= $halamanAktif ?>&&key=' + $('#search').val()"><i class="fi fi-rr-download"></i> Download Data
+        Peminjaman (PDF)</button>
 </div>
 <!-- ini.isi -->
 <div class="card-wrapper penulis">
@@ -139,3 +141,9 @@ $read = mysqli_query($db, "SELECT * FROM pembaca ORDER BY id ASC LIMIT 10");
         </div>
     </div>
 </div>
+<script>
+    document.querySelector(".download button").addEventListener("onclick", function () {
+        window.location.href = 'component/result/reader.php?lim=' + $('#selection').val() +
+            '&&page=<?= $halamanAktif ?>&&key=' + $("#search").val()
+    });
+</script>

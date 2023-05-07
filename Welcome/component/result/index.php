@@ -14,7 +14,6 @@ $book = mysqli_query($db, "SELECT * FROM buku WHERE
 judul_buku LIKE '%$keyword%' OR penulis LIKE '$keyword%' OR penerbit LIKE '$keyword%' ORDER BY id ASC LIMIT $awalData, $dataPerHalaman");
 ?>
 <!-- isi data -->
-<script src="JS/jquery-3.6.3.min.js"></script>
 <div class="isi-data">
     <div class="data">
         <table width="100%">
@@ -32,36 +31,36 @@ judul_buku LIKE '%$keyword%' OR penulis LIKE '$keyword%' OR penerbit LIKE '$keyw
                 $num = 1;
                 foreach ($book as $book):
                     ?>
-                <tr cellspacing="10">
-                    <td>
-                        <?= $num ?>
-                    </td>
-                    <td>
-                        <img src="../Admin/Temp/<?= $book["image"] ?>" alt="image_of_book" height="70" />
-                    </td>
-                    <td>
-                        <p class="limit">
-                            <?= $book['judul_buku'] ?>
-                        </p>
-                    </td>
-                    <td>
-                        <p>
-                            <?= $book['kategori'] ?>
-                        </p>
-                    </td>
-                    <td>
-                        <p class="limit">
-                            <?= $book['penulis'] ?>
-                        </p>
-                    </td>
-                    <td>
-                        <p class="limit">
-                            <?= $book['penerbit'] ?>
-                        </p>
-                    </td>
-                    <td id="detail">
-                        <a href="<?= $book['link'] ?>" id="read-book">
-                            <button onclick="
+                    <tr cellspacing="10">
+                        <td>
+                            <?= $num ?>
+                        </td>
+                        <td>
+                            <img src="../Admin/Temp/<?= $book["image"] ?>" alt="image_of_book" height="70" />
+                        </td>
+                        <td>
+                            <p class="limit">
+                                <?= $book['judul_buku'] ?>
+                            </p>
+                        </td>
+                        <td>
+                            <p>
+                                <?= $book['kategori'] ?>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="limit">
+                                <?= $book['penulis'] ?>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="limit">
+                                <?= $book['penerbit'] ?>
+                            </p>
+                        </td>
+                        <td id="detail">
+                            <a href="<?= $book['link'] ?>" id="read-book">
+                                <button onclick="
                                     let buku = '<?= $book['judul_buku'] ?>';
                                     let val = {buku: buku,value: date().khusus};
                                     putHistory(val, 2);
@@ -71,14 +70,14 @@ judul_buku LIKE '%$keyword%' OR penulis LIKE '$keyword%' OR penerbit LIKE '$keyw
                                         kategori: '<?= $book['kategori'] ?>'
                                      });
                                 " id="baca-buku">Baca Buku</button>
-                        </a>
-                        <button onclick="
+                            </a>
+                            <button onclick="
                                 $('.popup').load('component/result/fraction_group.php?bukid=<?= $book['id'] ?>');
                                 $('.popup').removeAttr('hidden');
                                 "><i class="fa-solid fa-chart-simple"></i>Detail</button>
-                    </td>
-                </tr>
-                <?php
+                        </td>
+                    </tr>
+                    <?php
                     $num++;
                 endforeach;
                 ?>
@@ -95,29 +94,29 @@ judul_buku LIKE '%$keyword%' OR penulis LIKE '$keyword%' OR penerbit LIKE '$keyw
 
         <div class="pagination">
             <?php if ($halamanAktif > 1): ?>
-            <button class="left" onclick="
+                <button class="left" onclick="
                 $('.isi-data').load(
                     'component/result/index.php?lim=<?= $dataPerHalaman ?>&&page=<?= $halamanAktif - 1 ?>&&key=<?= $keyword ?>'
                 )">
-                <i class=" fa-solid fa-angle-left"></i>
-                Prev
-            </button>
+                    <i class=" fa-solid fa-angle-left"></i>
+                    Prev
+                </button>
             <?php endif ?>
             <?php for ($i = 1; $i <= $halamanAktif; $i++): ?>
-            <?php if ($i == $halamanAktif): ?>
-            <p class="amount-of-data">
-                <?= $i ?>
-            </p>
-            <?php endif ?>
+                <?php if ($i == $halamanAktif): ?>
+                    <p class="amount-of-data">
+                        <?= $i ?>
+                    </p>
+                <?php endif ?>
             <?php endfor ?>
             <?php if ($halamanAktif < $jumlahHalaman): ?>
-            <button onclick="
+                <button onclick="
                 $('.isi-data').load(
                         'component/result/index.php?lim=<?= $dataPerHalaman ?>&&page=<?= $halamanAktif + 1 ?>&&key=<?= $keyword ?>'
                     )">
-                Next
-                <i class="fa-solid fa-angle-right"></i>
-            </button>
+                    Next
+                    <i class="fa-solid fa-angle-right"></i>
+                </button>
             <?php endif ?>
         </div>
     </div>

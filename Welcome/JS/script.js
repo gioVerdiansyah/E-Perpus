@@ -2,9 +2,6 @@ $(document).ready(function () {
 let onclick = false;
 
     if (window.matchMedia("(max-width: 768px)").matches) {
-        if($('#selection').value != 10){
-            $("body").css({'height' : '100vh'})
-        }
         onclick = true;
         $("header").hide();
     } else {

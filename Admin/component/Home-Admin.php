@@ -8,14 +8,19 @@ if (!isset($_SESSION["login"]) && !isset($_COOKIE["UIuDSteKukki"]) && !isset($_C
 
 $books = mysqli_query($db, "SELECT * FROM buku ORDER BY id");
 $user = mysqli_query($db, "SELECT * FROM loginuser ORDER BY id");
+$pinjam = mysqli_query($db, "SELECT * FROM pembaca ORDER BY id");
 
-$jumlahBuku = 1;
-$jumlahUser = 1;
+$jumlahBuku = 0;
+$jumlahUser = 0;
+$jumlahPembaca = 0;
 foreach ($books as $book) {
     $jumlahBuku++;
 }
-foreach ($books as $book) {
+foreach ($user as $users) {
     $jumlahUser++;
+}
+foreach ($pinjam as $peminjam) {
+    $jumlahPembaca++;
 }
 ?>
 
@@ -37,7 +42,14 @@ foreach ($books as $book) {
                 <h1>
                     <?= $jumlahBuku ?> Buku
                 </h1>
-                <button>Atur Data Buku</button>
+                <button onclick="
+                $('.content').load('component/Master-Buku.php');
+                $('*').removeClass('active');
+                $('#buku h3').addClass('active');
+                $('#list-master-data').addClass('list-master-data-onclick');
+                $('.side-bar ul li.dropdown .master-data .dropdown-icon').addClass('dropdown-icon-onclick');
+                $('.side-bar ul .dropdown .master-data').addClass('addBg');
+                ">Atur Data Buku</button>
             </div>
         </div>
         <div class="card2">
@@ -74,7 +86,9 @@ foreach ($books as $book) {
                             <h1><i class="fa-solid fa-cubes"></i></h1>
                         </div>
                         <div>
-                            <h2>3</h2>
+                            <h2>
+                                <?= $jumlahPembaca ?>
+                            </h2>
                             <p>Peminjaman</p>
                         </div>
                     </li>

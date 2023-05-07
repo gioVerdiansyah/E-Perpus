@@ -75,16 +75,14 @@ if (isset($_POST["submit"])) {
 </head>
 
 <body>
-    <div class="image">
-        <!-- <img src="Welcome/Assets/bg6-2.svg" alt="bg6-2.svg" /> -->
-    </div>
+    <div class="image"></div>
     <main>
         <h1>Selamat Datang <span id="hello">&#128075</span></h1>
         <form action="" method="post">
             <ul>
                 <li>
                     <label for="username">Username</label>
-                    <input type="text" name="username" id="username" placeholder="Masukkan nama" maxlength="64"
+                    <input type="text" name="username" id="username" placeholder="Masukkan Username" maxlength="64"
                         required />
                 </li>
                 <li>

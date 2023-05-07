@@ -1,7 +1,7 @@
 <?php
 session_name("SESSILGN");
 session_start();
-if (!isset($_SESSION["login-user"]) || !isset($_COOKIE["UUsSRlGnEQthORoe"]) || !isset($_COOKIE["UDsSRlGnEQthORue"])) {
+if (!isset($_SESSION["login-user"]) && !isset($_COOKIE["UUsSRlGnEQthORoe"]) && !isset($_COOKIE["UDsSRlGnEQthORue"])) {
     header("Location: ../index.php");
     exit;
 }
@@ -75,7 +75,7 @@ if ($key === hash("sha512", $row["username"])) {
                 <i class="fa-solid fa-clock-rotate-left"></i>Riwayat
             </li>
             <li id="feedback" onclick="
-              $('main').load('component/feedback.php?usr_nm=data_dummy');
+              $('main').load('component/feedback.php?usr_nm=<?= $username ?>');
               $('*').removeClass('on');
               $(this).addClass('on');"><i class="fa-solid fa-comment-pen"></i>Feedback</li>
         </ul>
