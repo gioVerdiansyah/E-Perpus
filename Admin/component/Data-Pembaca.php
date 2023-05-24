@@ -6,6 +6,12 @@ if (!isset($_SESSION["login"]) && !isset($_COOKIE["UIuDSteKukki"]) && !isset($_C
     exit;
 }
 
+$idRead = (isset($_POST['rid'])) ? $_POST['rid'] : 0;
+
+if (isset($idRead)) {
+    mysqli_query($db, "DELETE FROM pembaca WHERE id = $idRead");
+}
+
 $dataPerHalaman = (isset($_GET['lim'])) ? $_GET['lim'] : 10;
 $jumlahData = count(query("SELECT * FROM pembaca"));
 $jumlahHalaman = ceil($jumlahData / $dataPerHalaman);
@@ -32,9 +38,9 @@ $read = mysqli_query($db, "SELECT * FROM pembaca ORDER BY id DESC LIMIT 10");
 <script src="JS/jquery-3.6.3.min.js"></script>
 <script src="JS/script.js"></script>
 <div class="title">
-    <h1>Laporan</h1>
+    <h1>Pembaca</h1>
     <hr>
-    <h2>Data Laporan <img src="assets/angle-small-right.svg" alt=""></h2>
+    <h2>Data Pembaca <img src="assets/angle-small-right.svg" alt=""></h2>
     <h3>Reader</h3>
 </div>
 <div class="download">
@@ -114,8 +120,14 @@ $read = mysqli_query($db, "SELECT * FROM pembaca ORDER BY id DESC LIMIT 10");
                                     </p>
                                 </td>
                                 <td>
-                                    <a href="database/delete.php?id=<?= $reader['id'] ?>&&table=pembaca"><i
-                                            class="fa-solid fa-delete-left"></i></a>
+                                    <button class="member" onclick="
+                                    $.post('component/Data-Pembaca.php', { 
+                                        rid: <?= $reader['id'] ?>
+                                     });
+                                     alert('Data berhasil dihapus!');
+                                     $('#isi-data').load('component/result/reader.php?lim=' + $('#selection').val() + '&&page=<?= $halamanAktif ?>&&key=' + $('#search').val())
+                                "><i class="fa-solid fa-delete-left"></i>
+                                    </button>
                                 </td>
                             </tr>
                             <?php $id++; endforeach ?>
@@ -141,9 +153,3 @@ $read = mysqli_query($db, "SELECT * FROM pembaca ORDER BY id DESC LIMIT 10");
         </div>
     </div>
 </div>
-<script>
-    document.querySelector(".download button").addEventListener("onclick", function () {
-        window.location.href = 'component/result/reader.php?lim=' + $('#selection').val() +
-            '&&page=<?= $halamanAktif ?>&&key=' + $("#search").val()
-    });
-</script>

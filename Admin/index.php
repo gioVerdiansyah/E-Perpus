@@ -58,8 +58,17 @@ if ($key === hash("sha512", $row["username"])) {
                     <li id="penulis">
                         <h3>Penulis</h3>
                     </li>
+                    <li id="penerbit">
+                        <h3>Penerbit</h3>
+                    </li>
+                    <li id="kategori">
+                        <h3>Kategori</h3>
+                    </li>
                     <li id="buku">
                         <h3>Buku</h3>
+                    </li>
+                    <li id="anggota">
+                        <h3>Anggota</h3>
                     </li>
                 </ul>
             </li>

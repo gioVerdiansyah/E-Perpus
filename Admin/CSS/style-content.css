@@ -53,6 +53,13 @@ main .content-wrapper .content .download button {
   cursor: pointer;
   transition: all 0.3s;
 }
+.content-wrapper .content .card-wrapper #opsi {
+  width: max-content;
+  padding: 3px;
+  background-color: rgb(115, 103, 240);
+  color: white;
+  border-radius: 5px;
+}
 .content-wrapper .content .card-wrapper button.tambah i {
   margin-right: 5px;
 }
@@ -233,6 +240,22 @@ main .content-wrapper .content .download button {
   td
   button:hover {
   background-color: rgb(66, 55, 187);
+}
+.content-wrapper
+  .content
+  .card-wrapper
+  .isi-data
+  .data
+  table
+  tbody
+  tr
+  td
+  button.member {
+  width: max-content;
+  margin: 0 !important;
+  padding: 0;
+  border-radius: 0;
+  background-color: rgba(114, 103, 240, 0) !important;
 }
 .content-wrapper
   .content

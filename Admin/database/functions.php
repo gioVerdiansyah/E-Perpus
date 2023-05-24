@@ -121,23 +121,4 @@ function updt($data)
 
     return mysqli_affected_rows($db);
 }
-
-
-// delete
-function del($id, $table)
-{
-    global $db;
-    mysqli_query($db, "DELETE FROM $table WHERE id = $id");
-
-    return mysqli_affected_rows($db);
-}
-
-
-
-// Pagenation
-// require '../component/pagenation/index.php';
-// $jumlahData = count(query("SELECT * FROM buku"));
-// $jumlahHalaman = ceil($jumlahData / $dataPerHalaman);
-// $halamanAktif = (isset($_GET['page'])) ? $_GET['page'] : 1;
-// $awalData = ($dataPerHalaman * $halamanAktif) - $dataPerHalaman;
 ?>

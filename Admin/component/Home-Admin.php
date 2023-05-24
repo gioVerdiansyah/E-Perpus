@@ -89,7 +89,7 @@ foreach ($pinjam as $peminjam) {
                             <h2>
                                 <?= $jumlahPembaca ?>
                             </h2>
-                            <p>Peminjaman</p>
+                            <p>Pembaca</p>
                         </div>
                     </li>
                 </ul>

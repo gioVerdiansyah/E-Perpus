@@ -14,6 +14,7 @@ main .data-wrapper .data-indicator {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: baseline;
 }
 
 main .data-wrapper .data-indicator .data-entries {

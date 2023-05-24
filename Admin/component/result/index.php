@@ -36,38 +36,48 @@ judul_buku LIKE '%$keyword%' OR penulis LIKE '$keyword%' OR penerbit LIKE '$keyw
                 $id = 1;
                 foreach ($books as $book):
                     ?>
-                    <tr cellspacing="10">
-                        <td>
-                            <?= $id ?>
-                        </td>
-                        <td>
-                            <img src="Temp/<?= $book['image'] ?>" alt=" Thumbnail" height="70">
-                        </td>
-                        <td class="limit">
-                            <?= $book['judul_buku'] ?>
-                        </td>
-                        <td>
-                            <?= $book['kategori'] ?>
-                        </td>
-                        <td class="limit">
-                            <?= $book['penulis'] ?>
-                        </td>
-                        <td class="limit">
-                            <?= $book['penerbit'] ?>
-                        </td>
-                        <td>
-                            <a href="database/update.php?id=<?= $book['id'] ?>"><i
-                                    class="fa-solid fa-pen-to-square"></i></a>
-                            <a href="database/delete.php?id=<?= $book['id'] ?>"><i
-                                    class="fa-solid fa-delete-left"></i></a><br>
-                            <button onclick="
+                <tr cellspacing="10">
+                    <td>
+                        <?= $id ?>
+                    </td>
+                    <td>
+                        <img src="Temp/<?= $book['image'] ?>" alt=" Thumbnail" height="70">
+                    </td>
+                    <td class="limit">
+                        <?= $book['judul_buku'] ?>
+                    </td>
+                    <td>
+                        <?= $book['kategori'] ?>
+                    </td>
+                    <td class="limit">
+                        <?= $book['penulis'] ?>
+                    </td>
+                    <td class="limit">
+                        <?= $book['penerbit'] ?>
+                    </td>
+                    <td>
+                        <a href="database/update.php?id=<?= $book['id'] ?>"><i
+                                class="fa-solid fa-pen-to-square"></i></a>
+                        <button class="member" onclick="
+                                    let isDelete = confirm('Apakah anda yakin ingin mengahpus buku: <?= $book['judul_buku'] ?>?');
+                                    if(!isDelete){
+                                        return;
+                                    }
+                                    $.post('component/Master-Buku.php', { 
+                                        id: '<?= $book['id'] ?>'
+                                     });
+                                     alert('Data berhasil dihapus!');
+                                     $('#isi-data').load('component/result/index.php?lim=' + $('#selection').val() + '&&page=<?= $halamanAktif ?>&&key=' + $('#search').val())
+                                "><i class="fa-solid fa-delete-left"></i>
+                        </button><br>
+                        <button onclick="
                                 $('.popup').load('../Welcome/component/result/fraction_group.php?bukid=<?= $book['id'] ?>');
                                 $('.popup').removeAttr('hidden');
                                 "><i class="fa-solid fa-chart-simple"></i>Detail
-                            </button>
-                        </td>
-                    </tr>
-                    <?php
+                        </button>
+                    </td>
+                </tr>
+                <?php
                     $id++;
                 endforeach;
                 ?>
@@ -84,29 +94,29 @@ judul_buku LIKE '%$keyword%' OR penulis LIKE '$keyword%' OR penerbit LIKE '$keyw
 
         <div class="pagination">
             <?php if ($halamanAktif > 1): ?>
-                <button class="left" onclick="
+            <button class="left" onclick="
                 $('.isi-data').load(
                     'component/result/index.php?lim=<?= $dataPerHalaman ?>&&page=<?= $halamanAktif - 1 ?>&&key=<?= $keyword ?>'
                 )">
-                    <i class=" fa-solid fa-angle-left"></i>
-                    Prev
-                </button>
+                <i class=" fa-solid fa-angle-left"></i>
+                Prev
+            </button>
             <?php endif ?>
             <?php for ($i = 1; $i <= $halamanAktif; $i++): ?>
-                <?php if ($i == $halamanAktif): ?>
-                    <p class="amount-of-data">
-                        <?= $i ?>
-                    </p>
-                <?php endif ?>
+            <?php if ($i == $halamanAktif): ?>
+            <p class="amount-of-data">
+                <?= $i ?>
+            </p>
+            <?php endif ?>
             <?php endfor ?>
             <?php if ($halamanAktif < $jumlahHalaman): ?>
-                <button onclick="
+            <button onclick="
                 $('.isi-data').load(
                         'component/result/index.php?lim=<?= $dataPerHalaman ?>&&page=<?= $halamanAktif + 1 ?>&&key=<?= $keyword ?>'
                     )">
-                    Next
-                    <i class="fa-solid fa-angle-right"></i>
-                </button>
+                Next
+                <i class="fa-solid fa-angle-right"></i>
+            </button>
             <?php endif ?>
         </div>
     </div>

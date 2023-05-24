@@ -44,9 +44,8 @@ $("main .content-wrapper .heading .profile").mouseenter(function() {
   });
 
 // AJAX
-$(document).ready(function () {
     $(".content").load('component/Home-Admin.php');
-    const onReady = (ini, path) => {
+    function onReady (ini, path) {
         $('.content').load(path);
         $('*').removeClass('active');
         $(ini).addClass('active');
@@ -61,15 +60,24 @@ $(document).ready(function () {
         e.preventDefault();
         onReady(this, 'component/Master-Penulis.php');
     });
-
+    $("#penerbit h3").click(function (e) { 
+        e.preventDefault();
+        onReady(this, 'component/Master-Penerbit.php');
+    });
+    $("#kategori h3").click(function (e) { 
+        e.preventDefault();
+        onReady(this, 'component/Master-Kategori.php');
+    });
     $("#buku h3").click(function (e) { 
         e.preventDefault();
         onReady(this, 'component/Master-Buku.php');
+    });
+    $("#anggota h3").click(function (e) { 
+        e.preventDefault();
+        onReady(this, 'component/Master-Anggota.php');
     });
 
     $("#laporan").click(function (e) { 
         e.preventDefault();
         onReady(this, 'component/Data-Pembaca.php');
     });
-
-});

@@ -58,8 +58,13 @@ if ($key === hash("sha512", $row["username"])) {
                 </div>
                 <img src="../.temp/<?= $row['gambar'] ?>" alt="" />
                 <div class="dropdown-logout">
-                    <a href="../logout-user.php" onclick="return confirm('Yakin mau logout?');"><i
-                            class="fi fi-rr-sign-out-alt"></i>
+                    <a href="../logout-user.php" onclick="
+                    let isYes = confirm('Yakin mau logout?');
+                    if(isYes){
+                        localStorage.clear();
+                    }
+                    return isYes;
+                    "><i class="fi fi-rr-sign-out-alt"></i>
                         Logout</a>
             </li>
             </div>

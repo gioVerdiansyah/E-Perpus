@@ -66,8 +66,14 @@ bukunya LIKE '%$keyword%' OR username LIKE '$keyword%' OR tanggal_baca LIKE '$ke
                             </p>
                         </td>
                         <td>
-                            <p></p>
-                            <a href=""><i class="fa-solid fa-delete-left"></i></a>
+                            <button class="member" onclick="
+                                    $.post('component/Data-Pembaca.php', { 
+                                        rid: <?= $reader['id'] ?>
+                                     });
+                                     alert('Data berhasil dihapus!');
+                                     $('#isi-data').load('component/result/reader.php?lim=' + $('#selection').val() + '&&page=<?= $halamanAktif ?>&&key=' + $('#search').val())
+                                "><i class="fa-solid fa-delete-left"></i>
+                            </button>
                         </td>
                     </tr>
                     <?php $id++; endforeach ?>

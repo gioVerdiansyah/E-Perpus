@@ -62,18 +62,12 @@ foreach ($read as $reader) {
 </td>
 </tr>
 ';
+    $id++;
 }
 ;
 $html .= '
 </table>
 <link rel="stylesheet" href="../../CSS/cetak.css">
-<style>
-table tr:nth-child(odd) {
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-  table tr td.center {
-    text-align: center !important;
-  }</style>
 ';
 $mpdf = new \Mpdf\Mpdf();
 $mpdf->WriteHTML($html);

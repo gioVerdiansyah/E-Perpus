@@ -136,7 +136,7 @@ if (!isset($_SESSION["login-user"]) && !isset($_COOKIE["UUsSRlGnEQthORoe"]) && !
                     .then(response => {
                         $("#submit").fadeIn();
                         $("#hapus").fadeIn();
-                        $("#loading").fadeOut(500)
+                        $("#loading").fadeOut(500);
                         localStorage.setItem("hasSentAMessage", JSON.stringify(value))
                         if (hasSentAMessage.alredy <= 3 || JSON.parse(localStorage.getItem("hasSentAMessage"))
                             .time !== hariIni) {
@@ -145,7 +145,10 @@ if (!isset($_SESSION["login-user"]) && !isset($_COOKIE["UUsSRlGnEQthORoe"]) && !
                             $("#alert").hide();
                         }
                     })
-                    .catch(error => console.error('Error!', error.message))
+                    .catch(error => {
+                        $("#loading").html("<p>Error! " + error.message + "</p>");
+                        console.error('Error!', error.message);
+                    })
             }
         })
     } catch (error) { }
